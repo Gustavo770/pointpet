@@ -1,0 +1,462 @@
+*{
+	font-family: phinster;
+}
+
+.PointPet h1{
+    width: 50%;
+    color: #36939b;
+    border-top-style: solid;
+    margin: auto;
+}
+
+.PointPetInfo:hover{
+	-webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+
+}
+ .PointPetInfo h5{
+ 	margin-top: 10px;
+ }
+.PointPetInfo img{
+  width: 40%;
+
+}
+
+.PointPet p{
+  margin-top: 30px;
+}
+
+.btnConhecer button{
+  border-color: #36939b;
+	background-color:transparent;
+  margin-top: 20px;
+}
+.btnConhecer:hover button{
+	background: #f18719;
+  border-color: #f18719;
+
+}
+
+.fundo{
+	 background-image: url(../img/fundoAnuncio.png); 
+	 background-position: right bottom;  
+	 background-size: cover; 
+	 background-repeat: repeat;
+	  background-attachment: fixed;
+    height: 100%;
+}
+
+.solucao h1{
+	 width: 70%;
+    color: #f18719;
+    border-top-style: solid;
+    margin: auto;
+    font-size: 35px;
+}
+
+.solucaoImg img{
+      width: 30%;
+  
+    
+}
+.solucaoImg{
+    text-align: center;
+}
+.solucaoTitulo h3{
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.btnSolucao a{
+  background-color: #36939b;
+  border-color: transparent;
+}
+
+.btnSolucao{
+  margin-top: 25px;
+}
+
+.btnSolucao:hover a{
+   background-color: #f18719;
+   border-color: transparent;
+}
+
+.btnSolucao1 a{
+  background-color:#f18719;
+  border-color: transparent;
+}
+
+.btnSolucao1{
+  margin-top: 25px;
+}
+
+.btnSolucao1:hover a{
+   background-color:  #36939b;
+   border-color: transparent;
+}
+
+.solucaoToda{
+  text-align: center;
+}
+
+.solucaoP{
+  text-align: center;
+}
+
+.solucoes{
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 340px) and (max-width: 1024px){
+  div .fundo{
+    display: none;
+    display: show;
+
+  }
+
+}
+
+.color-blue{
+  color: #0d6b74;
+}
+
+.color-blue-light{
+  color: #36939b;
+}
+
+
+.color-orange{
+  color: #fca448;
+}
+
+@font-face{
+  font-family: phinster;
+  src: url(fonts/PhinsterRegular.woff);
+}
+
+section img{
+  margin-right: 11px;
+  margin-left: 11px;
+}
+
+.espaco{
+  margin-right: 13px;
+  margin-left: 13px;
+}
+.single-item {
+  max-width: 497px;
+  margin-left: 70px;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.photo-container {
+    background-size: cover;
+    background-position: center;
+    overflow-y: hidden;
+    max-height: 190px;
+    max-width: 194px;
+    
+ 
+}
+
+.photo-container .photo-desc {
+    background-color: rgba(255, 255, 255, 0.850);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 190px;
+    justify-content: space-evenly;
+    padding: 1em;
+    
+
+    transition: margin .6s;
+}
+
+
+
+.photo-desc, .photo-desc.slide-to-top { margin-top: 100%; }
+
+
+.photo-container:hover > .photo-desc {
+    margin: 0px;
+}
+
+
+.photo-desc-title {
+    font-size: 20px;
+    font-style: bold;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.photo-desc-body{
+  font-size: 13px;
+  color: #000000
+}
+
+.photo-desc-news{
+  font-size: 13px;
+  color: #36939b;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+}
+
+@media screen and (max-width:900px) {  
+  .sumir {
+    display: none;
+  }
+}
+
+@media screen and (min-width:1200px) {  
+  .aparecer{
+    display: none;
+  }
+}
+
+
+.anuncio1 img{
+    max-width: 400px;
+    margin-left: 300px;
+    margin-top: 70px;
+}
+
+
+.titulo {
+  text-align: center;
+}
+
+.titulo h1 {
+    font-family: phinster;
+    color: #0D6B74;
+    border-bottom: 2px solid #ffba71;
+    line-height: 1;
+    display: inline-block;
+}
+
+.titulo p{
+  font-size: 20px;
+  color: #f18719;
+  font-weight: bolder;
+}
+
+#demobox {
+  padding: 10px ;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  min-height: 406px;
+}
+
+header button{
+  text-decoration: none;
+  background-color: #fff;
+  color:#0d6b74;
+  display: inline-block;
+  padding: 15px 20px;
+  margin: 10px 30px;
+  border:1px solid #000000;
+  border-radius: 5px;
+  margin-left: 45%;
+
+
+}
+ header button:hover{
+  background-color: #5AB1B9;
+  color: #FFFFFF ;
+  box-shadow: 0 2px 3px #777;
+
+ }
+
+ @keyframes btn {
+  0%{
+    transform:rotate(0);
+  }
+  25%{
+    transform:rotate(10deg); 
+
+  }
+  50%{
+    transform:rotate(0);
+
+  }
+  75%{
+    transform:rotate(-10deg);
+  }
+
+ }
+ .btn {
+  transition: .5s;
+  border-color: #36939b;
+
+ }
+
+ .btn:hover{
+  animation-name: btn;
+  animation-delay: .5s;
+  animation-duration: 1s;
+  animation-timing-function: liner;
+  animation-iteration-count: 1
+ }
+.pointPetRespo{
+  margin-top:  -20px;
+}
+
+.tituloFaleConosco h1 {
+      font-family: phinster;
+    width: 50%;
+    color: #f18719;
+    border-top-style: solid;
+    margin: auto;
+    margin-top: -20px;
+}
+
+
+  
+.color-blue{
+    color: #0d6b74;
+}
+  
+.color-red{
+    color: #ff0000;
+}
+  
+.form-diferente{
+    color: #0d6b74;
+    border:1px solid #fca448;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+  
+.form-diferente:focus{
+    border-color: #fca448;
+    box-shadow: 2.5px 2px #fca448;
+    color: #0d6b74;
+}
+  
+
+  
+.centro{
+    text-align: center;
+}
+  
+@font-face{
+    font-family: phinster;
+    src: url(../fonts/PhinsterRegular.woff);
+}
+  
+header button{
+    text-decoration: none;
+    color:#0d6b74;
+    display: inline-block;
+    padding: 15px 20px;
+    margin: 10px 30px;
+    border:1px solid #000000;
+    border-radius: 5px;
+    background-color: transparent;
+    padding-left: 46%;
+ }
+ 
+ header button:hover{
+    background-color: #5AB1B9;
+    color: #FFFFFF ;
+    box-shadow: 0 2px 3px #777;
+ }
+ 
+ .btn{
+    transition: .5s;
+    border:1px solid #36939b;
+
+ }
+  .btn:hover{
+    animation-name: btn;
+    animation-delay: .5s;
+    animation-duration: 1s;
+    animation-timing-function: liner;
+    animation-iteration-count: 1
+ }
+ 
+ 
+  
+@keyframes btn {
+    0%{
+      transform:rotate(0);
+    }
+    25%{
+      transform:rotate(10deg); 
+    }
+    50%{
+      transform:rotate(0);
+    }
+    75%{
+      transform:rotate(-10deg);
+    }  
+}
+  
+.hide {
+    display: none;
+}
+  
+.form-diferente-readonly{
+    color: #0d6b74;
+    border:1px solid #a7adaf;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+  
+.form-diferente-readonly:focus{
+    border-color: #a7adaf;
+    box-shadow: 2.5px 2px #a7adaf;
+    color: #0d6b74;
+}
+
+.btnMandar button{
+  border-color: #f18719;
+  background-color:transparent;
+  margin-top: 20px;
+}
+.btnMandar:hover button{
+  background:#36939b;
+  border-color: #36939b;
+
+}
+
+.FooterBorda{
+  border-top-style: solid;
+  border-color: #36939b;
+      margin-top: -74px;
+}
+
+
+div .containerFale{
+  height: 100%;
+    margin: 0 auto;
+    background-image: url(../img/cachorro2.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+    opacity: 0.4;
+ 
+
+}
+
+ .fundo1{
+      background-color: #9bc9cd;
+    padding: 80px;
+
+}
+
+
+@media screen and (max-width:790px) {  
+  .sair {
+    display: none;
+  }
+}

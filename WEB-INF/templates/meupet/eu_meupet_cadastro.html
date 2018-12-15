@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head>
+<meta charset="UTF-8">
+ <link rel="icon"
+	href="http://images-cdn.impresa.pt/exameinformatica/2016-07-04-blog-140704-industry-4-0-336x336.png/original/mw-320">
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/estilos.css}">
+<link rel="stylesheet" th:href="@{/assets/css/basic.css}">
+<link rel="stylesheet" th:href="@{/assets/css/dropzone.css}">
+<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/js.js}"></script>
+<script th:src="@{/assets/js/dropzone.js}"></script>
+<script th:src="@{/assets/js/dropzone-amd-module.js}"></script>
+</head>
+
+<body>
+
+    <br>
+
+    <div class="titulo">
+        <h1>Eu e Meu Pet</h1>
+    </div>
+
+    <br>
+    <br>
+    <div class="container">
+        <div class="form-row justify-content-md-center">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label for="imgNoticia" class="color-blue">Imagem do pet (uma foto)</label>
+                    <label class="color-red">*</label>
+                    <form method= "POST" enctype="multipart/form-data" action="file-upload" class="dropzone color-blue" style="max-width: 700px;" id="my-awesome-dropzone"></form>
+                </div>
+            </div>
+        </div>
+        <form th:action="@{/app/meupet/salvar}" th:object="${meupet}" method="POST">
+        <input type="hidden" id="id" name="id" th:field="*{id}">
+            <div class="form-row justify-content-md-center">
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="nome" class="color-blue">Nome do Pet</label>
+                        <label class="color-red">*</label>
+                        <input type="text" required="required" class="form-control form-diferente" id="nome_pet" aria-describedby="nomePet" th:field="*{nomePet}" >
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="nome" class="color-blue">Seu Nome</label>
+                        <label class="color-red">*</label>
+                       <input type="text" required="required" class="form-control form-diferente" id="nome_dono" th:field="${usuario.nome}" aria-describedby="nome" />
+                       <input type="hidden" id="usuarioCPF" name="usuarioCPF" th:value="${usuario.cpf}" aria-describedby="usuarioCPF" />
+                        
+                    </div>
+                </div>
+
+
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="color-blue">Conte sua história</label>
+                        <label class="color-red">*</label>
+                        <textarea class="form-control form-diferente" id="exampleFormControlTextarea1" rows="4" th:field="*{historia}"></textarea>
+                        <small id="emailHelp" required="required" class="form-text text-muted">Máximo de 140 carácteres.</small>
+                    </div>
+                </div>
+            </div>
+            <header>
+                <button type="submit" class="btn"> Salvar </button>
+            </header>
+
+
+        </form>
+    </div>
+
+</body>
+
+</html>

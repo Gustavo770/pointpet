@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/assets/img/apple-icon.png}"/>
+    <link rel="icon" href="http://images-cdn.impresa.pt/exameinformatica/2016-07-04-blog-140704-industry-4-0-336x336.png/original/mw-320"/>
+    <link rel="stylesheet" th:href="@{/assets/css/teste.css}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>
+        PointPet
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link th:href="@{/assets/css/material-dashboard.css?v=2.1.0}" rel="stylesheet"/>
+
+    <link th:href="@{/assets/demo/demo.css}" rel="stylesheet">
+
+    <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/js.js}"></script>  
+
+</head>
+
+<body style="background-color:white">
+    
+     <div class="sidebar" data-color="white" data-background-color="black" th:data-image="@{/assets/img/sidebar-2.jpg}" th:replace="fragments/sidebar :: sidebar('anuncios')">
+    </div>  
+
+    <div class="main-panel">
+
+        <div class="titulo">
+            <h1>Lista de Anúncios</h1>
+        </div>
+
+        <br>
+
+        <section class="container">
+            <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+
+            <table style="margin-top: 40px" class="table-hover order-table table">
+                <thead style="background-color: #36939b">
+                    <tr>
+                        <th style="color:aliceblue">Empresa</th>
+                        <th style="color:aliceblue">Local do anuncio</th>
+                        <th style="color:aliceblue">Expiração</th>
+                        <th style="color:aliceblue" colspan="2">
+                            Opções
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="a : ${anuncios}">
+                        <td th:text="${a.pessoaJuridica.cnpj}">1</td>
+                        <td th:text="${a.localPagina.nome}">Dakota Rice</td>
+                        <td th:text="${a.expirou}">Dakota Rice</td>
+                              <td>
+                            <a th:href="@{/app/adm/anuncio/alterar(id=${a.id})}">Atualizar</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/app/adm/anuncio/deletar(id=${a.id})}">Deletar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </section>
+
+
+        <a th:href="@{anuncio/novo}">
+        
+        	<button style="background-color: #f18719; margin-right:15%; margin-top:15%" type="submit" class="btn btn-primary pull-right">Adicionar</button>
+        
+        </a>
+        
+     </div>
+</body>
+
+</html>

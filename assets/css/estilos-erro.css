@@ -1,0 +1,202 @@
+/* ------------------- Páginas de erro ------------------ */
+
+*{
+  font-family: phinster;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face{
+  font-family: phinster;
+  src: url(../fonts/PhinsterRegular.woff);
+}
+.computador{
+	flex: 1;
+  flex-shrink: 1;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.erro{
+	flex: 1;
+    flex-shrink: 1;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+
+
+h1{
+  color: white;
+	justify-content: center;
+	text-align: center;
+}
+
+.logo{
+	flex: 1;
+  flex-shrink: 1;
+	display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+
+}
+
+.responsiveFrog {
+    width: 100%;
+    max-width: 570px;
+    height: auto;
+}
+
+.responsivePug {
+    width: 100%;
+    max-width: 1000px;
+    height: 550px;
+}
+
+.responsiveCat {
+    width: 100%;
+    max-width: 900px;
+    
+    
+}
+
+
+
+@media screen and (max-width:1141px) {  
+  .catBigW{
+    display: none;
+  }
+}
+
+@media screen and (max-height:530px){  
+  .catBigH{
+    display: none;
+  }
+}
+@media screen and (min-width:1141px) {  
+  .minW{
+    display: none;
+  }
+}
+
+@media screen and (min-height:531px) {  
+  .minH{
+    display: none;
+  }
+}
+
+
+header button{
+  text-decoration: none;
+  background-color: transparent;
+  color:#0d6b74;
+  display: inline-block;
+  padding: 13px 20px;
+  margin: 10px 30px;
+  border:1px solid #000000;
+  border-radius: 5px;
+  margin-left: 45%;
+  font-size: 15px;
+
+
+}
+ header button:hover{
+  background-color: #5AB1B9;
+  color: #FFFFFF ;
+  box-shadow: 0 2px 3px #777;
+
+ }
+
+ @keyframes btn {
+  0%{
+    transform:rotate(0);
+  }
+  25%{
+    transform:rotate(10deg); 
+
+  }
+  50%{
+    transform:rotate(0);
+
+  }
+  75%{
+    transform:rotate(-10deg);
+  }
+
+ }
+ .btn{
+  transition: .5s;
+  border:1px solid #36939b;
+ }
+
+ .btn:hover{
+  animation-name: btn;
+  animation-delay: .5s;
+  animation-duration: 1s;
+  animation-timing-function: liner;
+  animation-iteration-count: 1
+ }
+
+
+
+.bounce:hover {
+  -moz-animation: bounce 1.2s infinite;
+  -webkit-animation: bounce 1.2s infinite;
+  animation: bounce 1.2s infinite;
+}
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}

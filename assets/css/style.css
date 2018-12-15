@@ -1,0 +1,282 @@
+body{ font-family: phinster !important;
+margin: 0 auto !important;
+width: 100% !important;
+
+}
+
+.fundo{
+	height: 100% !important;
+	margin: 0 auto !important;
+	background-image: url(../img/fundo1.jpeg) !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	width: 100% !important;
+	position: absolute;
+	z-index: -1;
+	opacity: 0.4;
+}
+
+.container{
+	width: 25% !important;
+	height: 600px !important;
+	border-radius: 20px !important;
+	text-align: center !important;
+	background-color: #36939b !important;
+	margin: 0 auto !important;
+	justify-content: center !important;
+	margin-top: 10px auto !important;
+	padding: 55px 55px 37px 55px !important;
+}
+
+
+
+.container img{
+	width: 120px;
+	height: 120px;
+	margin-top: 15%;
+	margin-bottom: 30px;
+
+}
+
+input{
+
+height: 35px;
+width: 300px;
+font-size: 15px;
+margin-bottom: 20px;
+background-color: #fff;
+padding-left: 30px;
+border: none;
+background: transparent;
+
+}
+
+.form-input input{
+	padding-left: 60px;
+    margin-top: 50px;
+    border-bottom: 2px solid rgba(255,255,255,0.24);
+    border-width: 100%;
+    outline: none;
+
+}
+
+.form-input{
+	position: relative; 
+	display: grid;
+	  border-width: 100%;
+
+
+}
+
+.form-input i{
+	position: absolute; 
+	left: 0;
+    color: #f18719;
+     margin-top: 60px;
+    margin-left: 8%;
+    margin-right: 100%;
+     -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
+    transition: height 2s;
+}
+
+.login{
+    font-size: 60% !important;
+    color: #f18719 !important;
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -moz-box !important;
+    display: -ms-flexbox !important;
+
+    justify-content: center !important;
+    align-items: center !important;
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
+    background-color: #fff !important;
+    margin: 0 auto !important;
+    font-size: 60px !important;
+    align-items: center !important;
+}
+
+
+
+
+h1{
+	color: #fff !important;
+    font-family:phinster !important;
+
+    margin-top: 10px !important;
+}
+
+::-webkit-input-placeholder {
+   color: white !important;
+   font-family: phinster !important;
+}
+
+.form-input input:hover {border-bottom: 2px solid rgb(241,135,25) !important;border-width: 100% !important;}
+
+
+.form-input:hover{
+	-webkit-transform: scale(1.0);
+        -ms-transform: scale(1.0);
+        transform: scale(1.2);
+
+}
+
+@font-face{
+  font-family: phinster;
+  src: url(../fonts/PhinsterRegular.woff);
+}
+
+.links button {
+	text-decoration: none !important;
+	color:#fff !important;
+	display: inline-block !important;
+	padding: 15px 20px !important;
+	margin: 10px 30px !important;
+	border:1px solid #fff !important;
+	border-radius: 5px !important;
+	font-family: phinster !important;
+
+	
+}
+.links button:hover{
+ 	background-color: #f18719 !important;
+ 	color: #fff !important;
+ 	box-shadow: 0 2px 3px #fff !important;
+
+ }
+
+ .btn-login{
+      background-color: transparent !important;
+ }
+
+.links{
+	margin-top: 40px !important;
+}
+
+ .linkSenha {
+ 	 font-family: phinster !important;
+ 	 text-decoration: none !important;
+     margin-top: 30px !important;
+     color: #fff !important;
+
+ }
+
+.linkSenha a:hover{
+	color: #f18719 !important;
+ 	
+
+}
+
+.linkCadastrar{
+   font-family: phinster !important;
+   text-decoration: none !important;
+     margin-top: 30px !important;
+     color: #fff !important;
+     margin-left: 2px !important;
+
+ }
+
+.linkCadastrar a:hover{
+  color: #f18719 !important; 
+}
+
+.links2{
+  display: flex !important;
+}
+
+@media (max-width: 576px) 
+    {
+      div.container{
+           height: 700px;
+           width: 350px !important;
+      }
+      input {
+        width: 250px;
+      }
+
+    .fundo{
+    	height: 130% !important;
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
+
+    }
+    @media (min-width: 576px) and (max-width: 767px)
+    {
+        div.container{
+           height: 700px;
+           width: 350px !important
+    
+
+      }
+      input {
+        width: 250px;
+      }
+
+    .fundo{
+    	height: 130% !important;
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
+
+      
+    }
+    @media (min-width: 768px) and (max-width: 991px)
+    {
+        div.container{
+          height: 700px;
+           width: 350px !important
+    
+
+      }
+      input {
+         width: 250px;
+      }
+
+    .fundo{
+    	height: 130% !important;
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
+
+      
+    }
+    @media (min-width: 992px) and (max-width: 1199px)
+    {
+      div.container{
+          height: 700px;
+           width: 350px !important
+    
+
+      }
+      input {
+        width: 240px;
+      }
+
+    .fundo{
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
+
+    } @media (min-width: 1200px){
+        div.container{
+          height: 700px;
+           width: 350px !important
+      }
+      input {
+        width: 240px;
+      }
+
+    .fundo{
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
+    }
+    
+
+    }
+
+}
+ }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Administrador</title>
+
+<link rel="icon" href="http://images-cdn.impresa.pt/exameinformatica/2016-07-04-blog-140704-industry-4-0-336x336.png/original/mw-320">
+
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/estiloCadastroAdm.css}">
+<script th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+
+    <script type="text/javascript">
+
+		function formatReal( a )
+		{
+		        var tmp = a+'';
+		        tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
+		        tmp = temp.replace(/\D/g,"")
+		        if( tmp.length > 6 )
+		                tmp = tmp.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+
+		        return tmp;
+		}
+
+		</script>
+
+</head>
+
+<body>
+
+	<div class="titulo">
+		<h1>Cadastro de Revista</h1>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<form th:object="${revista}" th:action="@{/app/adm/revista/salvar}" method="post" enctype="multipart/form-data">
+		
+		<div class="form-row justify-content-md-center">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="edicao" class="color-blue">Adicione a revista</label> <label
+							class="color-red">*</label>
+							
+							<input name="revista" type="file" class="form-control form-diferente" id="edicao"
+								aria-describedby="edicao" />
+							
+					</div>
+				</div>
+		</div>
+		
+			<div class="form-row justify-content-md-center">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="edicao" class="color-blue">Edição</label> <label
+							class="color-red">*</label>
+							
+							<input th:field="*{edicao}" name="edicao" value="${status.value}"
+								type="text" class="form-control form-diferente" id="edicao"
+								aria-describedby="edicao" />
+							<small><span th:if="${#fields.hasErrors('edicao')}" th:errors="*{edicao}" class="color-red"></span></small>
+							
+					</div>
+				</div>
+			
+			</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="descricao" class="color-blue">Descricao</label> <label
+							class="color-red">*</label>
+							
+							<input th:field="*{descricao}" name="descricao" value="${status.value}"
+								type="text" class="form-control form-diferente" id="descricao"
+								aria-describedby="descricao" />
+							<small><span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="color-red"></span></small>
+							
+					</div>
+				</div>
+			
+			<div class="col-md-4">
+					<div class="form-group">
+						<label for="preco" class="color-blue">Preço</label> <label
+							class="color-red">*</label>
+							
+							<input th:field="*{preco}" name="preco" value="${status.value}"
+								type="number" class="form-control form-diferente" id="preco"
+								aria-describedby="preco" onKeyPress="formatReal(this.value)" />
+							<small><span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}" class="color-red"></span></small>
+							
+					</div>
+				</div>
+				
+				<p> Quando clicar em salvar, você declara que é responsável pela publicação da revista. </p>
+
+			<br/> <br/>
+			<center>
+				<header>
+					<button type="submit" class="btn">Salvar</button>
+				</header>
+			</center>
+		</form>
+	</div>
+</body>
+</html>

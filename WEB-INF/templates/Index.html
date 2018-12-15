@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- CSS próprio -->
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/estilo-index.css}" />
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css" />
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+
+<!-- Slick -->
+<link rel="stylesheet" th:href="@{/assets/css/slick.css}" charset="utf-8" />
+<link rel="stylesheet" th:href="@{/assets/css/slick-theme.css}" charset="utf-8" />
+
+<!-- Ícone -->
+<link rel="icon" th:href="@{/assets/img/icon.ico}" />
+
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+
+<!-- NavBar -->
+<link rel="stylesheet" th:href="@{/assets/css/navbar.css}">
+
+<style>
+
+.fundoNavBar {
+	height: 600px;
+	background-image: url([[@{/assets/img/cachorro2.jpeg}]]);
+	background-repeat: no-repeat;
+	background-size: 100% 140%;
+	opacity: 0.6;
+	z-index: -1;
+	position: relative;
+}
+
+.noticiaEspaco{
+
+	max-height:330px; 
+	width: 500px !important;
+	max-width: 500px !important;
+
+}
+
+.anuncioEspaco{
+
+	background-image: url([[${anuncio9} != null ? @{/assets/fotos/anuncio/foto_anuncio_{id}.jpg(id=${anuncio9.id})} : @{/assets/img/anuncio.jpg}]]);
+
+}
+
+.tamanho-padrao img{
+
+	max-height: 356px;
+
+}
+label{
+	
+	color: black;
+
+}
+
+.enquete-opcoes{
+
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+
+}
+
+.opcao-enquete{
+
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+
+}
+
+.form-radio
+{
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     display: inline-block;
+     position: relative;
+     background-color: #f1f1f1;
+     color: #666;
+     top: 10px;
+     height: 30px;
+     width: 30px;
+     border: 0;
+     border-radius: 50px;
+     cursor: pointer;     
+     margin-right: 7px;
+     outline: none;
+     margin-top: -15px;
+}
+.form-radio:checked::before
+{
+     position: absolute;
+     font: 13px/1 'Open Sans', sans-serif;
+     left: 11px;
+     top: 7px;
+     content: '\02143';
+     transform: rotate(40deg);
+}
+.form-radio:hover
+{
+     background-color: #f7f7f7;
+}
+.form-radio:checked
+{
+     background-color: #f1f1f1;
+}
+</style>
+   
+</head>
+
+<body>
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+<!-- NavBar -->
+<nav class="navbar navbar-default navbar-expand-lg navbar-light" th:replace="fragments/Navbar :: navbar"></nav>
+
+
+<!-- Cachorro -->
+<div class="fundoNavBar"></div>
+
+<!-- logo com texto do fundo da navbar -->
+<div class="nav2">
+	<img th:src="@{/assets/img/LogoComTexto.png}" style="margin-top: -51%; width: 34%; margin-left: 23%;"/>
+</div>
+
+<!-- Título Notícias Do dia -->
+<div class="solucao">
+	<h1 class="mb-4" style="margin-top:48px; text-align: center; width: 55%;">Notícias do dia</h1>
+</div>
+
+<div class="py-5" th:if="${noticiasDia != null}">
+	<div class="container">
+    	<div class="noticiaPrincipal">
+    		<div class="row">
+	        	<div class="col-md-12 p-3" > 
+	          		<div class="noticiaAlterar">
+	         			<a th:href="@{/app/noticia/abrir(id=${noticiasDia[0].id})}">
+	         			<img class="img-fluid d-block img-responsiva" th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiasDia[0].id})}" style="height: 500px; margin: auto;  margin-top:  -52px;; width: 92%;"/>
+						<div class="subtituloPrincipal">
+	      					<div  class="tagsPrincipal">
+	       						<a th:href="@{/app/noticia/abrir(id=${noticiasDia[0].id})}" style="text-decoration: none;"/>
+	         						<p th:text="${noticiasDia[0].categoriaNoticia.nome}"> Tema </p>
+	         					</a>
+	       			</div>
+	         	<p th:text="${noticiasDia[0].titulo}">Titulo da notícia 0</p>
+	 			</div>
+			</div>
+     	</div>
+
+	<div class="row">
+		<div class="col-md-6 p-3"> 
+	    	<div class="noticiaAlterar">
+	        	<a th:href="@{/app/noticia/abrir(id=${noticiasDia[1].id})}">
+	        	<img class="img-fluid d-block img-responsiva" th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiasDia[1].id})}" style="margin-top: -35px;  height: 300px;margin-left: 55px;width: 100%;"/> 
+				<div class="subtitulo">
+	  				<div  class="tagsPrincipal">
+	  					<a th:href="@{/app/noticia/abrir(id=${noticiasDia[1].id})}" style="text-decoration: none;"/>
+	        				<p th:text="${noticiasDia[1].categoriaNoticia.nome}"> Tema </p>
+	        			</a>
+	      	</div>
+	        <p th:text="${noticiasDia[1].titulo}">Titulo da notícia 1</p>
+		</div>
+
+    </div>
+	</div>
+
+	<div class="col-md-6 p-3">
+			<div class="noticiaAlterar">
+	        	<a th:href="@{/app/noticia/abrir(id=${noticiasDia[2].id})}">
+	       		<img class="img-fluid d-block img-responsiva" th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiasDia[2].id})}" style="margin-top: -35px; height: 300px; width: 88%;"/>
+	   			<div class="subtitulo1">
+					<div  class="tagsPrincipal">
+	           			<a th:href="@{/app/noticia/abrir(id=${noticiasDia[2].id})}" style="text-decoration: none;"/>
+	          				<p th:text="${noticiasDia[2].categoriaNoticia.nome}"> Tema </p>
+	          			</a>
+	        </div>
+	        <p th:text="${noticiasDia[2].titulo}">Titulo da notícia 2</p>
+	</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="container-fluid" style="background-color: #5ab1b9; margin-top: -75px;">   
+    <div class="row ">
+        <div class="col">
+            <section class="slider single-item float-lg-left tamanho-padrao">
+                <img th:src="@{/assets/fotos/anuncio/foto_anuncio_1.jpg}" />
+                <img th:src="@{/assets/fotos/anuncio/foto_anuncio_2.jpg}" />
+                <img th:src="@{/assets/fotos/anuncio/foto_anuncio_3.jpg}" />
+                <img th:src="@{/assets/fotos/anuncio/foto_anuncio_4.jpg}" />
+                <img th:src="@{/assets/fotos/anuncio/foto_anuncio_5.jpg}" />
+                <img th:src="@{/assets/fotos/anuncio/foto_anuncio_6.jpg}" />
+                <img th:src="@{/assets/fotos/anuncio/foto_anuncio_7.jpg}" />
+            </section>     
+        </div>
+        
+        <div class="col">
+            <div class="dog float-right img-responsive" style="margin-right: -14px">
+                <img class="img-dog-responsiva" th:src="@{/assets/img/dog.png}" />
+            </div>
+        </div>  
+
+    </div>       
+</div>
+
+<br>
+<br>
+
+<div class="container sumir" style="max-width: 1090px;">
+    <h3 class="color-orange" style="margin-left: 20px; margin-bottom: 13px;">Notícias Destaque</h3>
+    <section class=" slider multiple-items" style="margin-bottom: 50px; width:1090px;">
+        <div class="photo-container espaco noticiaEspaco" th:each="noticia : ${noticias}" th:style="'background:url(' + @{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticia.id})} + ');'">
+            
+            <div class="photo-desc" style="word-wrap: break-word; width:500px !important; height:350px; margin-top: 0 !important">
+            	<a th:href="@{/app/noticia/abrir(id=${noticia.id})}">
+	                <p class="photo-desc-news" th:text="${noticia.categoriaNoticia.nome} + | + ${noticia.jornalista.usuario.nome}">Categoria  |  Nome do jornalista</p>
+	                <p class="photo-desc-title" th:text="${noticia.titulo}" style="max-width:100%;">Título da Notícia</p>
+	                <p class="photo-desc-body" th:text="${noticia.subtitulo}" style="max-width:100%;"> Subtítulo notícia </p>
+	            </a>
+          	</div>
+            
+           
+            
+        </div>
+    </section>           
+</div>
+
+  <div th:if="${noticiaAleatoria1} != null and ${noticiaAleatoria2} != null" class="py-5"   style="margin-top: -50px;">
+    <div class="fundo">
+    <div class="container">
+       <div class="row">
+        <div class="col-lg-6 p-3">
+          <div class="card text-center" style="margin-top: 40px;">
+            <div class=" p-3">
+
+              <h3 style=" color: #f18719;" th:text="${noticiaAleatoria1.titulo}">Titulo</h3>
+            </div>
+            <div class="card-body p-3"> 
+              <img th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiaAleatoria1.id})}" style="    width: 70%; border-radius: 20px;"/>
+              <p style=" font-size: 20px; margin-top: 10px;" th:text="${noticiaAleatoria1.subtitulo}"> Subtítulo notícia </p>
+               <a th:href="@{/app/noticia/abrir(id=${noticiaAleatoria1.id})}">
+	               <button class="btn btn-primary" style="width: 20%; background-color:  #f18719; border-color: transparent;"> 
+	               Ver </button>               
+               </a>
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-6 p-3">
+          <div class="card text-center" style="margin-top: 40px;">
+            <div class="p-3">
+              <h3 style=" color: #f18719;" th:text="${noticiaAleatoria2.titulo}">Titulo</h3>
+            </div>
+            <div class="card-body p-3"> 
+              <img th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiaAleatoria2.id})}" style="  width: 70%; border-radius: 20px;"/>
+              <p style=" font-size: 20px; margin-top: 10px;" th:text="${noticiaAleatoria2.subtitulo}"> Subtítulo notícia </p>
+               <a th:href="@{/app/noticia/abrir(id=${noticiaAleatoria2.id})}">
+	               <button class="btn btn-primary" style="width: 20%; background-color:  #f18719; border-color: transparent;"> Ver </button>               
+               </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div>
+    
+    <div class="anuncio" style="margin-top: 32px;">
+      <img th:src="${anuncio8} != null ? @{/assets/fotos/anuncio/foto_anuncio_{id}.jpg(id=${anuncio8.id})} : @{/assets/img/anuncio.jpg}"/>
+
+    </div>
+
+    <div class="solucoes">
+  <div class="py-5" >
+    <div class="container">
+      <div class="row">
+        <div class="text-center mx-auto col-md-12">
+          <div class="solucao">
+          <h1 class="mb-4">O que podemos fazer por você</h1>
+        </div>
+      </div>
+      </div>
+      <div class="row d-flex justify-content-around">
+        <div class="col-lg-3 p-4 py-5 bg-light d-flex flex-column mb-3">
+          <div class="solucaoImg">
+          <img th:src="@{/assets/img/people.png}"/>
+          </div>
+          <div class="solucaoTitulo">
+          <h3> <b>Conecte-se</b> </h3>
+          </div>
+           <div class="solucaoP">
+          <p class="pb-3">Conectividade entre todas as áreas do mundo Pet, tornando 
+          a experiência única.</p>
+        </div>
+          <div class="btnSolucao1">
+        <a class="btn btn-primary mt-auto btn-block" th:href="@{/app/midiaKit}">Faça parte</a>
+      </div>
+        </div>
+
+        <div class="col-lg-3 px-4  py-5 bg-light d-flex flex-column mb-3">
+
+          <div class="solucaoImg">
+          <img th:src="@{/assets/img/newspaper.png}"/>
+          </div>
+          <div class="solucaoTitulo">
+          <h3> <b>Matérias exclusivas</b> </h3>
+        </div>
+         <div class="solucaoP">
+          <p class="pb-3 ">Revista digital que trás todas e as melhores notícias sobre o mundo Pet e suas diversidades</p>
+        </div>
+          <div class="btnSolucao">
+           <a class="btn btn-primary mt-auto btn-block" th:href="@{/app/revista}">Veja</a>
+         </div>
+        </div>
+        <div class="col-lg-3 px-4  py-5 bg-light d-flex flex-column mb-3">
+          <div class="solucaoImg">
+            <img th:src="@{/assets/img/girl.png}"/>
+          </div>
+          <div class="solucaoTitulo">
+          <h3> <b>Você e seu Pet</b> </h3>
+          </div>
+          <div class="solucaoP">
+          <p class="pb-3">Compartilhe conosco a sua historia, suas memórias e seus momentos com seu pet</p>
+          </div>
+          <div class="btnSolucao1">
+           <a class="btn btn-primary mt-auto btn-block" href="#EuEMeuPetAncora">Compartilhe</a>
+         </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <div style="background-color: #f8f9fa; padding-top: 32px; padding-bottom: 32px;">
+  
+	   <div class="noticias2" >
+	    <div class="py-5 text-center text-white noticiaEditada1" style="background-image: linear-gradient(to bottom, rgba(241, 135, 25, .75), rgba(54, 147, 155, .75)); background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat; width: 35%;height: 400px; border-radius: 20px; box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+	      <div class="noticia2">
+	      
+		   
+	      
+	         <div class="enquete-opcoes">
+	          <h2 style="color: #36939b;">
+				<b> 5.Você lê notícias sobre Pet’s ... </b> 
+			</h2>
+				     <div class="opcao-enquete radio-azul">
+	         	
+	         		<input type="radio" class="form-radio" name="enquete" style=" font-size: 15px;"/> <label> por curiosidade. </label>
+	         	
+	         	</div>
+	         	<div class="opcao-enquete radio-azul">
+	         	
+	         		<input type="radio" class="form-radio" name="enquete" style=" font-size: 15px;"/> <label> quando meu Pet está doente. </label>
+	         	
+	         	</div>
+	         	
+	         	<div class="opcao-enquete radio-azul">
+	         	
+	         		<input type="radio" class="form-radio" name="enquete" style=" font-size: 15px;"/> <label> porque gosto. </label>
+	         	
+	         	</div>
+	         	
+	         	<div class="opcao-enquete radio-azul">
+	         	
+	         		<input type="radio" class="form-radio" name="enquete" style=" font-size: 15px;"/> <label> outros. </label>
+	         	
+	         	</div>  	
+	         
+	         </div>
+	         <button class="btn btn-primary" style="width: 20%; background-color:#f18719; border-color: transparent;"> Votar </button>
+	        
+	      </div>
+	  </div>
+	   <div class="py-5 text-center text-white noticiaEditada2" style="margin-left: 30px; margin-top: 100px; background-image: linear-gradient(to bottom, rgba(241, 135, 25, .75), rgba(54, 147, 155, .75)); background-position: center center, center center; background-size: cover, cover;background-repeat: repeat, repeat; width: 35%; height: 300px; box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 20px;" >
+	  <div class="notica3">
+	              <video style="max-width: 100%; padding: 15px; padding-top: 23px; max-height: 100%;" src="https://drive.google.com/uc?export=download&id=1HF7IPfe817FwY6hMiDyhRKYUMUh9WdtD" class="embed-responsive-item" type="video/mp4" controls="controls"> Your browser does not support HTML5 video. </video>
+	  </div>
+	  </div>
+	
+	   <div class="py-5 text-center text-white anuncioEspaco noticiaEditada3" style=" margin-left: -35%; margin-left: 200; background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat; width: 35%; height: 90px;height: 00px;  border-radius: 10px; box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" >
+	
+	  </div>
+	
+	</div>
+
+</div>
+
+
+<div class="titulo" style="margin-top: 80px; margin-bottom: 30px;" id="EuEMeuPetAncora">
+    <h1>Eu e meu Pet</h1>
+</div>
+
+<div class="container sumir" style="max-width: 900px;">
+    <section class=" slider multiple-items" style="margin-bottom: 50px;">
+        <div class="photo-container espaco" th:each="meupet : ${meuspets}" th:style="'background-image:url(' + @{${meupet.caminhoFoto}} + ');'">
+            <div class="photo-desc">
+                <p class="photo-desc-title" th:text="${meupet.nomePet} + ' com ' + ${meupet.usuario.nome}">Fulano com fulaninho</p>
+                <p class="photo-desc-body" th:text="${meupet.historia}"> histórico do pet </p>
+            </div>
+        </div>
+    </section>           
+</div>
+
+
+
+<div class="container aparecer" style="margin-bottom: 50px;">
+    <p  class="color-blue" style="text-align: center; font-size: 20px"> Poste uma foto com seu pet! - elas serão mostradas na versão para desktop do site :-)</p>
+</div>
+
+
+<center>
+        <div class="btnMandar">
+          <a th:href="@{/app/meupet/novo}">
+          
+          	<button  class="btn">Mande a sua!</button>
+          
+          </a>
+          </div>  
+        </center>      
+
+  <div class="py-5 text-white">
+    <div class="container">
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  <!-- Notícias por categoria -->
+  
+  <div class="py-5 text-center" th:if="${categorias != null}">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 p-0 py-2">
+          <div class="responsive1">
+          <div class="card border-0 rounded-0" style="height: 100%;">
+            <div class="card-body p-4" style="border: 1px solid rgba(0, 0, 0, 0.125);">
+              <h3 style="color:#f18719; border-top-style: solid;" th:text="${categorias[0].nome}">Categoria</h3>
+              <h2 class="my-3"> 
+                <div class="responsiveImg">
+                  	<a th:href="@{/app/noticia/abrir(id=${noticiasCat1[0].id})}">
+                		<img th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiasCat1[0].id})}"/>
+                	</a>
+                </div>
+                <div class="subtitulo1-not-cat">
+
+               		<p th:text="${noticiasCat1[0].titulo}">Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+               		
+               </div>
+              </h2>
+              <ul class="text-left">
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat1[0].id})}">
+                <li  th:text="${noticiasCat1[0].titulo}">Seven</li>
+                </a>
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat1[1].id})}">
+                <li  th:text="${noticiasCat1[1].titulo}">Eight</li>
+                </a>
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat1[2].id})}">
+                <li  th:text="${noticiasCat1[2].titulo}">Nine</li>
+                </a>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-md-4 p-0">
+            <div class="responsive1">
+          <div class="card py-2" style="height: 100%;">
+            <div class="card-body p-4" >
+              <h3 style="color:#36939b; border-top-style: solid;" th:text="${categorias[1].nome}">Categoria</h3>
+               <h2 class="my-3">
+               <div class="responsiveImg">
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat2[0].id})}">
+                	<img th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiasCat2[0].id})}"/>
+                </a>
+                </div> 
+                <div class="subtitulo-not-cat">
+               <p th:text="${noticiasCat2[0].titulo}">Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+               </div>
+              </h2>
+              <ul class="text-left">
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat2[0].id})}">
+                <li th:text="${noticiasCat2[0].titulo}">Seven</li>
+                </a>
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat2[1].id})}">
+                <li  th:text="${noticiasCat2[1].titulo}">Eight</li>
+                </a>
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat2[2].id})}">
+                <li  th:text="${noticiasCat2[2].titulo}">Nine</li>
+                </a>
+              </ul> 
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-md-4 p-0 py-2">
+            <div class="responsive1">
+          <div class="card border-0 rounded-0" style="height: 100%; ">
+            <div class="card-body p-4" style="border: 1px solid rgba(0, 0, 0, 0.125);">
+              <h3 style="color:#f18719; border-top-style: solid;" th:text="${categorias[2].nome}"> Categoria</h3>
+               <h2 class="my-3"> 
+                <div class="responsiveImg">
+                  <a th:href="@{/app/noticia/abrir(id=${noticiasCat3[0].id})}">
+               		<img th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticiasCat3[0].id})}"/>
+                </a>
+              </div>
+                  <div class="subtitulo1-not-cat">
+               <p th:text="${noticiasCat3[0].titulo}">Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+               </div>
+              </h2>
+              <ul class="text-left">
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat3[0].id})}">
+                <li th:text="${noticiasCat3[0].titulo}">Seven</li>
+                </a>
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat3[1].id})}">
+                <li th:text="${noticiasCat3[1].titulo}">Eight</li>
+                </a>
+                <a th:href="@{/app/noticia/abrir(id=${noticiasCat3[2].id})}">
+                <li  th:text="${noticiasCat3[2].titulo}">Nine</li>
+                </a>
+              </ul> 
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>  
+  
+  <!-- Fim das notícias por categoria -->
+
+    <div class="fundo1" >  
+    <div class="container-fluid">
+
+                <div th:class="tituloFaleConosco">
+                    <h1 th:class="titulo">Fale Conosco</h1>
+                </div>
+            </div>
+
+
+	<form method="post" th:action="@{/mensagem/salvar}" ajax="true" th:object="${mensagem}" style="margin-top: 20px;">
+        <div class="form-row justify-content-md-center" >  
+            <div class="col col-lg-4">
+                <div class="form-group">
+                    <label for="Nome" class="color-blue">Nome</label>
+                    <label class="color-red">*</label>
+                    <input type="text" class="form-control form-diferente" id="Nome" aria-describedby="Nome" th:field="*{nome}">
+                </div>
+          </div>
+
+            <div class="col col-lg-4">
+                <div class="form-group">
+                    <label for="E-mail" class="color-blue">E-mail</label>
+                    <label class="color-red">*</label>
+                    <input type="text" class="form-control form-diferente" id="E-mail" aria-describedby="E-mail" th:field="*{email}">
+                </div>
+            </div>
+        </div>
+     
+
+        <div class="form-row justify-content-md-center">
+            <div class="col col-lg-8">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="color-blue">Deixe sua mensagem</label>
+                    <label class="color-red">*</label>
+                    <textarea class="form-control form-diferente" id="exampleFormControlTextarea1" rows="8" th:field="*{mensagem}"></textarea>
+                </div>
+            </div>
+        </div>
+  <center>
+        <div class="btnConhecer">
+          <button  class="btn" style="border-color: #f18719; background-color: #f18719;">Enviar</button>
+          </div>  
+        </center>      
+
+    </form>
+  </div>
+
+  
+   
+    <div class="container" style="margin-left: 20px;">
+
+         
+         <img style=" z-index: 3; width: 30%; height: 300px; ;
+    margin-top: -226px;" th:src="@{/assets/img/cachorro.png}"/>
+     
+      </div>
+      <div class="py-3" style="margin-top: -80px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center d-md-flex align-items-center"> 
+           <a href="#">
+          <img style="width: 10%; margin-left: -106%; margin-top: -30px;" class="logo-footer-responsivo" th:src="@{/assets/img/LogoComTexto.png}"/>
+           </a>
+          <ul class="nav mx-md-auto d-flex justify-content-center">
+				<li class="nav-item"><a th:href="@{/app/sobre}" class="nav-link">Sobre</a></li>
+				<li class="nav-item"><a th:href="@{/app/revista}" class="nav-link">Revista</a></li>
+				<li class="nav-item"><a th:href="@{/listaEmpresas}" class="nav-link">Empresas</a></li>
+				<li class="nav-item"><a th:href="@{/app/midiaKit}" class="nav-link">Preços</a></li>
+          </ul>
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-md-between justify-content-center my-2"> <a href="#">
+                <i class="d-block fa fa-facebook-official text-muted fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
+              </a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="mt-2 mb-0">© 2018 Senai informatica & Point. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" style=""></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+	<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/slick.min.js}"></script>
+    <script th:src="@{/assets/js/js.js}"></script>
+    
+    <script type="text/javascript">
+    
+	    $(document).ready(function(e) {
+	        
+	        $("form[ajax=true]").submit(function(e) {
+	            
+	            e.preventDefault();
+	            
+	            var form_data = $(this).serialize();
+	            var form_url = $(this).attr("action");
+	            var form_method = $(this).attr("method").toUpperCase();
+	            
+	            $("#loadingimg").show();
+	            
+	            $.ajax({
+	                url: form_url, 
+	                type: form_method,      
+	                data: form_data,     
+	                cache: false,
+	                success: function(e){                          
+	                                  
+	                	alert("Sua mensagem foi enviada!");
+	                	
+	                }           
+	            });    
+	            
+	        });
+	        
+	    });
+    
+    </script>
+    
+    
+</body>
+
+</html>

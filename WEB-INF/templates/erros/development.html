@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title>Em Desenvolvimento</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="@{/assets/logoErro.png}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/estilos-erro.css}"/>
+    </head>
+    <body style="background-color: #80cace "> 
+
+        <div class="logo bounce" style="">
+               <img th:src="@{/assets/img/Ativo6.png}" alt="Banner de aniversário"/>
+        </div>
+        
+
+        <div class="catBigH catBigW computador">
+            <img th:src="@{/assets/img/frog.png}" class="responsiveFrog" style="position: absolute; right: 3%; bottom: 0%;"/>
+        </div>
+
+        <div class="catBigH catBigW" style="position: absolute; max-width: 600px;top: 30%;left: 5%">
+            <h1>Desculpe, essa página está em desenvolvimento</h1>
+            <header style="margin-top: 10px;position: absolute;left: 35%;">
+                <a th:href="@{/}">
+                	
+                	<button th:href="@{/}" class="btn"> Home </button>
+                
+                </a>
+            </header>
+        </div>
+
+        <div class="minW" style="margin-top: 70px;">
+            <h1>Desculpe, essa página está em desenvolvimento.</h1>
+            <header style="margin-top: 10px;position: absolute;right: 45%;">
+                <a th:href="@{/}">
+                	
+                	<button th:href="@{/}" class="btn"> Home </button>
+                
+                </a>
+            </header>
+        </div>
+
+        <!--style="text-align: center; right: 50%;margin-top: 70px;-->
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head>
+<title>Cadastro de Jornalista</title>
+<meta charset="UTF-8">
+
+<link rel="icon" th:href="@{/assets/img/icon.ico}" />
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/estilos.css}" />
+<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/assets/js/slick.min.js}"></script>
+
+
+</head>
+<body>
+
+	<br>
+
+	<div class="titulo">
+		<h1>Cadastro de Categoria</h1>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<form th:action="@{/app/adm/categoria/salvar}" method="post"
+			th:object="${categoriaNoticia}">
+
+			<input type="hidden" th:field="*{id}"
+				class="form-control form-diferente" id="id" aria-describedby="id"
+				value="${status.value}" />
+
+			<div class="form-row justify-content-md-center">
+				<div class="col-md-7">
+					<div class="form-group">
+						<label for="nome" class="color-blue">Nome</label> <label
+							class="color-red">*</label> <input type="text" name="nome"
+							class="form-control form-diferente" id="nome"
+							aria-describedby="nome" th:field="*{nome}">
+					</div>
+				</div>
+			</div>
+
+			<button class="btn" type="submit">Salvar</button>
+
+		</form>
+	</div>
+
+</body>
+</html>
+

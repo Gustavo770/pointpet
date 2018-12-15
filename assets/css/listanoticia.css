@@ -1,0 +1,29 @@
+*{
+	font-family: phinster;
+}
+
+body{
+	font-family: phinster;
+	
+}
+
+h1{
+	font-size: 25px;
+	color: #f18719;
+}
+
+.card-text{
+	font-size: 15px;
+}
+
+.card-um{
+	margin-left: 280px;
+	margin-top: 45px;
+	display: flex;
+}
+
+.card-dois{
+	margin-left: 280px;
+	margin-top: 45px;
+	
+}

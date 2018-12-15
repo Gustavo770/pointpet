@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PointPet</title>
+    <link rel="icon" th:href="@{/assets/img/icon.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/listanoticia.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/navbar.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	
+	<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-expand-lg navbar-light" th:replace="fragments/Navbar :: navbar"></nav>
+
+	<div class="container" style="padding-top: 100px;">
+	
+	<h2>Resultados da pesquisa: </h2>
+	<h3> " <span th:text="${pesquisa}"></span> " </h3>
+
+	<!-- CARDS DA NOTICIA -->
+
+	<div class="card-um">
+	
+		<div class="card-deck" th:each="noticia : ${noticias}">
+		
+			<a th:href="@{/app/noticia/abrir(id=${noticia.id})}">
+			
+				<div class="card border-dark mb-3" style="max-width: 18rem;margin-right: 30px;">
+		    		<img class="card-img-top" th:src="@{/assets/fotos/noticia/foto_noticia_{id}.jpg(id=${noticia.id})}" alt="Imagem notícia">
+		    		<div class="card-body">
+		     			<h1 class="card-title" th:text="${noticia.titulo}">Titulo</h1>
+		      			<p class="card-text" th:text="${noticia.subtitulo}">Subtitulo</p>  
+	    			</div>
+	    		</div>
+			
+			</a>
+		
+	  </div>
+	
+	</div>
+
+</div>
+
+</body>
+</html>

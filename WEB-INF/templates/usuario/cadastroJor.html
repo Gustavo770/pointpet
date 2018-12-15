@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Administrador</title>
+
+<link rel="icon" th:href="@{/assets/img/icon.ico}" />
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/estiloCadastroAdm.css}">
+<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+
+
+</head>
+
+<body>
+
+	<div class="error" th:if="${param.error}"
+		th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+		Reason: <span th:text="${errorMsg}">Wrong input!</span>
+	</div>
+	<br>
+
+	<div class="titulo">
+		<h1>Cadastro de Jornalista</h1>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<form th:action="@{/app/adm/usuarioJ/salvar}" method="post">
+		
+			<div class="form-row justify-content-md-center">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="nome" class="color-blue">Nome</label> <label
+							class="color-red">*</label>
+							
+							<input th:field="*{usuario.nome}" name="nome" value="${status.value}"
+								type="text" class="form-control form-diferente" id="nome"
+								aria-describedby="nome" />
+							<span th:if="${#fields.hasErrors('usuario.nome')}" th:errors="*{usuario.nome}"></span>
+							
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="sobrenome" class="color-blue">Sobrenome</label> <label
+							class="color-red">*</label>
+							
+							<input th:field="*{usuario.sobrenome}" name="sobrenome" value="${status.value}"
+								type="text" class="form-control form-diferente" id="sobrenome"
+								aria-describedby="sobrenome" />
+							<span th:if="${#fields.hasErrors('usuario.sobrenome')}" th:errors="*{usuario.sobrenome}"></span>
+							
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="form-row justify-content-md-center">
+			   <div class="col-md-2">
+			                    <div class="form-group">
+			                        <label for="sexo" class="color-blue">Sexo</label>
+			                        <label class="color-red">*</label>
+
+				                        <select class="form-control form-diferente" id="sexo" th:field="*{usuario.sexo}">
+				                            <option value="Feminino">Feminino</option>
+				                            <option value="Masculino">Masculino</option>
+				                            <option value="Prefiro não dizer">Prefiro não dizer</option>
+				                        </select>  
+										
+			                    </div>
+			                </div>
+			              </div>
+
+			<div class="form-row justify-content-md-center">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="cpf" class="color-blue">CPF</label> <label
+							class="color-red">*</label>
+							
+							<input th:field="*{usuario.cpf}" name="cpf" value="${status.value}"
+								type="text" class="form-control form-diferente" id="cpf"
+								aria-describedby="cpf" />
+							<span th:if="${#fields.hasErrors('usuario.cpf')}" th:errors="*{usuario.cpf}"></span>
+							
+					</div>
+				</div>
+
+			
+			</div>
+
+			<div class="form-row justify-content-md-center">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="email" class="color-blue">Email</label> <label
+							class="color-red">*</label>
+							
+							<input th:field="*{usuario.email}" name="email" value="${status.value}"
+								type="text" class="form-control form-diferente" id="email"
+								aria-describedby="email" />
+							<span th:if="${#fields.hasErrors('usuario.email')}" th:errors="*{usuario.email}"></span>
+					
+					</div>
+				</div>
+
+				
+			</div>
+
+			<div class="form-row justify-content-md-center">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="senha" class="color-blue">Senha</label>
+						<label class="color-red">*</label>
+						
+						 <input th:field="*{usuario.senha}" name="senha" value="${status.value}"
+								type="password" class="form-control form-diferente" id="senha"
+								aria-describedby="email" />
+							<span th:if="${#fields.hasErrors('usuario.senha')}" th:errors="*{usuario.senha}"></span>
+							
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="senha" class="color-blue">Confirme sua senha</label> 
+						<label class="color-red">*</label> 
+						
+							<input type="password"
+							class="form-control form-diferente" name="confirmacaoSenha"
+							aria-describedby="senha" />
+							
+					</div>
+				</div>
+			</div>
+			<br/> <br/>
+			<center>
+				<header>
+					<button type="submit" class="btn">Salvar</button>
+				</header>
+			</center>
+		</form>
+	</div>
+</body>
+</html>

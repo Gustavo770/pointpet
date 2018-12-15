@@ -1,0 +1,127 @@
+*{
+    font-family: phinster;
+  }
+  
+  @font-face{
+    font-family: phinster;
+    src: url(../fonts/PhinsterRegular.woff);
+  }
+  
+  .card .card-header-primary .card-icon,
+  .card .card-header-primary .card-text,
+  .card .card-header-primary:not(.card-header-icon):not(.card-header-text),
+  .card.bg-primary,
+  .card.card-rotate.bg-primary .front,
+  .card.card-rotate.bg-primary .back {
+    background: linear-gradient(60deg, #12BBAF, #12BBAF) !important;
+  }
+  
+  .card .card-header-succes .card-icon,
+  .card .card-header-success .card-text,
+  .card .card-header-success:not(.card-header-icon):not(.card-header-text),
+  .card.bg-success,
+  .card.card-rotate.bg-success .front,
+  .card.card-rotate.bg-success .back {
+    background: linear-gradient(60deg, #f18719, #f18719) !important;
+  }
+  
+  .form-control, .is-focused .form-control {
+      background-image: linear-gradient(to top, #12BBAF 2px, rgba(156, 39, 176, 0) 2px),
+      linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+  }
+  
+  .switch {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+  }
+  
+  .switch + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+  .switch--shadow + label {
+    padding: 2px;
+    width: 40px;
+    height: 20px;
+    background-color: #dddddd;
+    border-radius: 20px;
+  }
+  .switch--shadow + label:before,
+  .switch--shadow + label:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: "";
+  }
+  .switch--shadow + label:before {
+  right: 1px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  transition: all 0.4s;
+  }
+  .switch--shadow + label:after {
+  width: 22px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s;
+  }
+  .switch--shadow:checked + label:before {
+    background-color: #8ce196;
+  }
+  .switch--shadow:checked + label:after {
+    transform: translateX(20px);
+  }
+  
+  .main-panel{
+    padding: 30px 15px;
+    min-height: calc(100vh 0px);
+  }
+  
+  .solucaocard{
+  
+  display: flex;
+  margin-left: 235px;
+  }
+  
+  .rowone{
+  
+  margin-right: 150px;
+  
+  }
+  
+  .rowthree{
+  margin-left: 1px;
+  margin-right: 300px;
+  }
+  
+  .solucaodoiscard{
+  
+  display: flex;
+  margin-left: 235px;
+  
+  }
+  
+  .solucaocardtres{
+  display: flex;
+  margin-left: 235px;
+  }
+  
+  
+  
+  #a{
+   color: #f18719; 
+   font-size: 15px;
+  }
+
+  .page-link {
+    color: white !important;    
+    background-color: transparent !important;
+    border: transparent !important;
+  }

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+   <link rel="icon" th:href="@{/assets/img/icon.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/assets/css/estiloCadastroAdm.css}"/>
+	
+	<!-- NavBar -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/css/navbar.css}"/>
+	
+    <script th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/js.js}"></script>  	
+    
+    <!-- Retirado de: https://www.scriptbrasil.com.br/forum/topic/142846-fun%C3%A7%C3%A3o-para-mascara-cpf/ -->
+    <script type="text/javascript">
+    
+		function mascara(o,f){
+			v_obj=o
+			v_fun=f
+			setTimeout("execmascara()",1)
+		}
+
+		function execmascara(){
+			v_obj.value=v_fun(v_obj.value)
+		}
+
+		function formatarCpf(v){
+			v=v.replace(/\D/g,"")                    //Remove tudo o que não é dígito
+			v=v.replace(/(\d{3})(\d)/,"$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
+			v=v.replace(/(\d{3})(\d)/,"$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
+													 //de novo (para o segundo bloco de números)
+			v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
+			return v
+		}
+
+		function mudaMascara( objSelec , id )
+		{
+			var campo = document.getElementById( id ) ;
+			campo.value = "" ;
+			campo.focus() ;
+			( objSelec.selectedIndex == 1 ) ? campo.onkeypress = function(){ mascara(this, formatarCpf) } : campo.onkeypress = function(){} ;
+		}
+		
+		/* ----- Máscara de CEP ----- */
+		
+		function mascaraCEP(o,f){
+			v_obj=o
+			v_fun=f
+			setTimeout("execmascara()",1)
+		}
+
+		function execmascara(){
+			v_obj.value=v_fun(v_obj.value)
+		}
+
+		function formatarCEP(v){
+			v=v.replace(/\D/g,"")                    //Remove tudo o que não é dígito
+													 //para o segundo bloco de números
+			v=v.replace(/(\d{5})(\d{1,3})$/,"$1-$2") //Coloca um hífen entre o segundo e o terceiro dígitos
+			return v
+		}
+
+		function mudaMascaraCEP( objSelec , id )
+		{
+			var campo = document.getElementById( id ) ;
+			campo.value = "" ;
+			campo.focus() ;
+			( objSelec.selectedIndex == 1 ) ? campo.onkeypress = function(){ mascaraCEP(this, formatarCEP) } : campo.onkeypress = function(){} ;
+		}
+		
+		/* Telefone */
+		function mascaraTelefone(o,f){
+			v_obj=o
+			v_fun=f
+			setTimeout("execmascara()",1)
+		}
+
+		function execmascara(){
+			v_obj.value=v_fun(v_obj.value)
+		}
+
+		function formatarTelefone(v){
+			v=v.replace(/\D/g,"")                    //Remove tudo o que não é dígito
+													 //para o segundo bloco de números
+			v=v.replace(/(\d{0})(\d{0,2})/,"$1($2") //Coloca um parentese entre o primeiro e o segundo dígitos
+			v=v.replace(/(\d{2})(\d{0,2})/,"$1)$2") //Coloca um parentese entre o segundo e o terceiro dígitos
+			return v
+		}
+
+		function mudaMascaraTelefone( objSelec , id )
+		{
+			var campo = document.getElementById( id ) ;
+			campo.value = "" ;
+			campo.focus() ;
+			( objSelec.selectedIndex == 1 ) ? campo.onkeypress = function(){ mascaraCEP(this, formatarCEP) } : campo.onkeypress = function(){} ;
+		}
+		
+	</script>
+    
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-expand-lg navbar-light" th:replace="fragments/Navbar :: navbar">
+	  
+	</nav>
+
+    <br/>
+
+    <div class="titulo" style="padding-top: 50px;">
+        <h1>Cadastro de Pessoas</h1>
+    </div>
+
+    <br/>
+    <br/>
+
+    <div class="container">
+
+	<div th:switch="${ pjSelecionada }">
+
+		<div th:case="true">
+
+			<div class="row justify-content-md-center">
+		            <div class="col col-lg-2">
+		                <div class="form-check">
+		                    <input class="form-check-input" type="radio" name="pessoa" id="PF" value="PF"/>
+		                    <label class="form-check-label color-blue" for="exampleRadios1">Pessoa Física</label>
+		                </div>
+		            </div>
+		
+		            <div class="col col-lg-2">
+		                <div class="form-check">
+		                    <input class="form-check-input" type="radio" name="pessoa" id="PJ" value="PJ" checked/>
+		                    <label class="form-check-label color-blue" for="exampleRadios1">Pessoa Jurídica</label>
+		                </div>
+		            </div>
+	      	  	</div>
+
+		</div>
+		
+		<div th:case="*">
+	
+			<div class="row justify-content-md-center">
+		            <div class="col col-lg-2">
+		                <div class="form-check">
+		                    <input class="form-check-input" type="radio" name="pessoa" id="PF" value="PF" checked/>
+		                    <label class="form-check-label color-blue" for="exampleRadios1">Pessoa Física</label>
+		                </div>
+		            </div>
+		
+		            <div class="col col-lg-2">
+		                <div class="form-check">
+		                    <input class="form-check-input" type="radio" name="pessoa" id="PJ" value="PJ"/>
+		                    <label class="form-check-label color-blue" for="exampleRadios1">Pessoa Jurídica</label>
+		                </div>
+		            </div>
+	      	  	</div>
+
+		</div>
+
+	</div>
+	   	       
+        <!-- Pessoa Física -->
+        
+        <form th:action="@{/usuarioPF/salvar}" method="post" id="PessoaF">
+        
+           	<input type="hidden" th:field="*{usuario.id}" class="form-control form-diferente" id="id" aria-describedby="id" value="${status.value}" /> 
+           
+           	<input type="hidden" th:field="*{pessoaFisica.id}" class="form-control form-diferente" id="id" aria-describedby="id" value="${status.value}"/>
+
+       	
+			            <div class="form-row justify-content-md-center">
+			                <div class="col-md-3">
+			                    <div class="form-group">
+			                        <label for="nome" class="color-blue">Nome</label>
+			                        <label class="color-red">*</label>
+									
+			                        	<input type="text"  class="form-control form-diferente" id="nome" aria-describedby="nome" th:field="*{usuario.nome}" value="${status.value}"/>
+										<span th:if="${#fields.hasErrors('usuario.nome')}" th:errors="*{usuario.nome}" class="color-red"></span>	
+											
+			                    </div>
+			                </div>
+
+			                <div class="col-md-4">
+			                    <div class="form-group">
+			                        <label for="sobrenome" class="color-blue">Sobrenome</label>
+			                        <label class="color-red">*</label>
+									
+			                        	<input type="text" class="form-control form-diferente" id="sobrenome" aria-describedby="sobrenome" th:field="*{usuario.sobrenome}" value="${status.value}"/>
+										<span th:if="${#fields.hasErrors('usuario.sobrenome')}" th:errors="*{usuario.sobrenome}"></span>
+
+			                    </div>
+			                </div>  
+			            </div>
+
+			            <div class="form-row justify-content-md-center">
+			                <div class="col-md-3">
+			                    <div class="form-group">
+			                        <label for="cpf" class="color-blue">CPF</label>
+			                        <label class="color-red">*</label>
+
+		                     		<input type="text" class="form-control form-diferente" id="cpf" aria-describedby="cpf" onKeyPress="mascara(this, formatarCpf)" th:field="*{usuario.cpf}" value="${status.value}"/>
+									<span th:if="${#fields.hasErrors('usuario.cpf')}" th:errors="*{usuario.cpf}"></span>
+
+			                    </div>
+			                </div>
+
+			                <div class="col-md-2">
+			                    <div class="form-group">
+			                        <label for="sexo" class="color-blue">Sexo</label>
+			                        <label class="color-red">*</label>
+
+				                        <select class="form-control form-diferente" id="sexo" th:field="*{usuario.sexo}">
+				                            <option value="Feminino">Feminino</option>
+				                            <option value="Masculino">Masculino</option>
+				                            <option value="Prefiro não dizer">Prefiro não dizer</option>
+				                        </select>  
+										
+			                    </div>
+			                </div>
+
+			                <div class="col-md-2">
+			                    <div class="form-group">
+			                        <label for="telefone" class="color-blue">Telefone</label>
+			                        <label class="color-red">*</label>
+
+			                        	<input type="text" class="form-control form-diferente" id="telefone" aria-describedby="telefone" onKeyPress="mascaraTelefone(this, formatarTelefone)" th:field="*{telefone.numero}" value="${status.value}"/>
+			                        	<span th:if="${ #fields.hasErrors('telefone.numero') }" th:errors="*{telefone.numero}"></span>
+
+			                    </div>   
+			                </div>                    
+			            </div>
+
+			                <div class="form-row justify-content-md-center">
+			                    <div class="col-md-3">
+			                        <div class="form-group">
+			                            <label for="pais" class="color-blue">País</label>
+			                            <label class="color-red">*</label>
+
+				                            <select class="form-control form-diferente" id="pais" th:field="*{endereco.pais}" >
+				                                <option value="Brasil" selected="selected">Brasil</option>
+				                            </select>   
+											
+			                        </div>
+			                   </div>
+
+			                   <div class="col-md-4">
+			                        <div class="form-group">
+			                            <label for="sexo" class="color-blue">Estado</label>
+			                            <label class="color-red">*</label>
+
+				                            <select class="form-control form-diferente" id="sexo" th:field="*{endereco.estado}">
+				                                <option value="AC">Acre</option>
+				                                <option value="AL">Alagoas</option>
+				                                <option value="AP">Amapá</option>
+				                                <option value="AM">Amazonas</option>
+				                                <option value="BA">Bahia</option>
+				                                <option value="CE">Ceará</option>
+				                                <option value="DF">Distrito Federal</option>
+				                                <option value="ES">Espírito Santo</option>
+				                                <option value="GO">Goiás</option>
+				                                <option value="MA">Maranhão</option>
+				                                <option value="MT">Mato Grosso</option>
+				                                <option value="MS">Mato Grosso do Sul</option>
+				                                <option value="MG">Minas Gerais</option>
+				                                <option value="PA">Pará</option>
+				                                <option value="PB">Paraíba</option>
+				                                <option value="PR">Paraná</option>
+				                                <option value="PE">Pernambuco</option>
+				                                <option value="PI">Piauí</option>
+				                                <option value="RJ">Rio de Janeiro</option>
+				                                <option value="RN">Rio Grande do Norte</option>
+				                                <option value="RS">Rio Grande do Sul</option>
+				                                <option value="RO">Rondônia</option>
+				                                <option value="RR">Roraima</option>
+				                                <option value="SC">Santa Catarina</option>
+				                                <option value="SP">São Paulo</option>
+				                                <option value="SE">Sergipe</option>
+				                                <option value="TO">Tocantins</option>
+				                            </select>   
+
+			                        </div>
+			                   </div>                  
+			                </div>
+
+			                <div class="form-row justify-content-md-center">
+			                    <div class="col-md-7">
+			                        <div class="form-group">
+			                            <label for="cidade" class="color-blue">Cidade</label>
+			                            <label class="color-red">*</label>
+			                            
+			                            	<input type="text" class="form-control form-diferente" id="cidade" aria-describedby="cidade" th:field="*{endereco.cidade}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('endereco.cidade') }" th:errors="*{endereco.cidade}"></span>
+			                            					                                
+			                        </div>
+			                    </div>   
+			                </div>
+
+			                <div class="form-row justify-content-md-center">
+			                    <div class="col-md-3">
+			                        <div class="form-group">
+			                            <label for="cidade" class="color-blue">CEP</label>
+			                            <label class="color-red">*</label>
+			                            
+			                            	<input type="text" class="form-control form-diferente" id="cep" aria-describedby="CEP" onKeyPress="mascaraCEP(this, formatarCEP)" th:field="*{endereco.cep}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('endereco.cep') }" th:errors="*{endereco.cep}"></span>		
+			                            				                                
+			                        </div>
+			                    </div> 
+
+			                    <div class="col-md-4">
+			                        <div class="form-group">
+			                            <label for="cidade" class="color-blue">Bairro</label>
+			                            <label class="color-red">*</label>
+
+			                            	<input type="text" class="form-control form-diferente" id="bairro" aria-describedby="bairro" th:field="*{endereco.bairro}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('endereco.bairro') }" th:errors="*{endereco.bairro}"></span>
+			                            	
+			                        </div>
+			                    </div>   
+			                </div>
+
+			                <div class="form-row justify-content-md-center">
+			                    <div class="col-md-3">
+			                        <div class="form-group">
+			                            <label for="logradouro" class="color-blue">Endereço</label>
+			                            <label class="color-red">*</label>
+
+			                            	<input type="text" class="form-control form-diferente" id="logradouro" aria-describedby="logradouro" th:field="*{endereco.logradouro}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('endereco.logradouro') }" th:errors="*{endereco.logradouro}"></span>
+			                            	
+			                        </div>
+			                    </div>          
+
+			                    <div class="col-md-2">
+			                        <div class="form-group">
+			                            <label for="complemento" class="color-blue">Complemento</label>
+			                            
+			                            	<input type="text" class="form-control form-diferente" id="complemento" aria-describedby="complemento" th:field="*{endereco.complemento}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('endereco.complemento') }" th:errors="*{endereco.complemento}"></span>
+			                            	
+			                        </div>
+			                    </div> 
+
+			                    <div class="col-md-2">
+			                        <div class="form-group">
+			                            <label for="numero" class="color-blue">Número</label>
+			                            <label class="color-red">*</label>
+			                            
+			                            	<input type="text" class="form-control form-diferente" id="numero" aria-describedby="numero" th:field="*{endereco.numeroLocal}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('endereco.numeroLocal') }" th:errors="*{endereco.numeroLocal}"></span>
+			                            	
+			                        </div>
+			                    </div> 
+			                </div>
+
+			                <div class="form-row justify-content-md-center">
+			                    <div class="col-md-4">
+			                        <div class="form-group">
+			                            <label for="email" class="color-blue">Email</label>
+			                            <label class="color-red">*</label>
+
+			                            	<input type="email" class="form-control form-diferente" id="email" aria-describedby="email" th:field="*{usuario.email}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('usuario.email') }" th:errors="*{usuario.email}"></span>
+			                            	 
+			                        </div>
+			                    </div>
+
+			                    <div class="col-md-3">
+			                        <div class="form-group">
+			                            <label for="email" class="color-blue">Confirme seu email</label>
+			                            <label class="color-red">*</label>
+			                            
+			                            <input type="email" class="form-control form-diferente" id="email" aria-describedby="email" name="confirmaEmail"/>
+			                            	
+			                        </div>
+			                    </div>                     
+			                </div>
+
+			                <div class="form-row justify-content-md-center">
+			                    <div class="col-md-4">
+			                        <div class="form-group">
+			                            <label for="senha" class="color-blue">Senha</label>
+			                            <label class="color-red">*</label>
+
+			                            	<input type="password" class="form-control form-diferente" id="senha" aria-describedby="senha" th:field="*{usuario.senha}" value="${status.value}"/>
+			                            	<span th:if="${ #fields.hasErrors('usuario.senha') }" th:errors="*{usuario.senha}"></span>
+			                            	
+			                        </div>
+			                    </div>    
+
+			                    <div class="col-md-3">
+			                        <div class="form-group">
+			                            <label for="senha" class="color-blue">Confirme sua senha</label>
+			                            <label class="color-red">*</label>
+			                            
+			                            <input type="password" class="form-control form-diferente" id="senha" aria-describedby="senha" name="confirmaSenha"/>
+			                        	
+			                        </div>   
+			                    </div>                     
+			                </div>
+
+			                <br/>
+
+				                <div class="form-row justify-content-md-center">
+				                    <div class="col col-lg-2">
+				                        <div class="form-check">
+				                        
+				                            <input class="form-check-input" type="checkbox" value="vet" id="checkVet" onclick="show1();" name="souVeterinario" 
+				                            th:text="${souVetSelecionado} ? 'checked' : ''"/>
+				                            
+				                            <label class="form-check-label color-blue" for="checkVets">
+				                                Sou veterinário
+				                            </label>
+				                        </div>
+				                    </div>
+				                </div>
+
+
+				                <div class="form-row justify-content-md-center hide" id="souVet">
+				                    <div class="col-md-7">
+				                        <div class="form-group">
+				                            <label for="senha" class="color-blue">CRMV</label>
+				                            <label class="color-red">*</label>
+				                            
+				                            	<input type="text" class="form-control form-diferente" id="crmv" aria-describedby="crmv" th:field="*{pessoaFisica.crmv}" value="${status.value}">
+				                            	<span th:if="${ #fields.hasErrors('pessoaFisica.crmv') }" th:errors="*{pessoaFisica.crmv}"></span>
+				                            	
+				                        </div>
+				                    </div>                      
+				                </div>
+
+				                <br>
+				              
+				                <center>
+				                
+				                	<button type="submit" class="btn">Salvar</button>
+				                
+				                </center>
+						</form>
+				            
+		<!-- Pessoa Jurídica -->
+		
+		<form th:action="@{/usuarioPJ/salvar}" method="post" id="PessoaJ">
+		
+			<input type="hidden" th:field="*{usuario.id}" class="form-control form-diferente" id="id" aria-describedby="id" value="${status.value}" /> 
+	            
+	        <input type="hidden" th:field="*{pessoaJuridica.id}" class="form-control form-diferente" id="id" aria-describedby="id" value="${status.value}"/>
+		
+            <div class="form-row justify-content-md-center">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nomeFantasia" class="color-blue">Nome Fantasia</label>
+                        <label class="color-red">*</label>
+                        
+                        	<input type="text" class="form-control form-diferente" id="nomeFantasia" aria-describedby="nomeFantasia" th:field="*{pessoaJuridica.nomeFantasia}" value="${status.value}"/>
+                       		<span th:if="${ #fields.hasErrors('pessoaJuridica.nomeFantasia') }" th:errors="*{pessoaJuridica.nomeFantasia}"></span>
+                       		      
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="razaoSocial" class="color-blue">Razão Social</label>
+                        <label class="color-red">*</label>
+                        
+                       		<input type="text" class="form-control form-diferente" id="razaoSocial" aria-describedby="razaoSocial" th:field="*{pessoaJuridica.razaoSocial}" value="${status.value}"/>
+                        	<span th:if="${ #fields.hasErrors('pessoaJuridica.razaoSocial') }" th:errors="*{pessoaJuridica.razaoSocial}"></span>
+                        	
+                    </div>
+                </div>  
+            </div>
+
+            <div class="form-row justify-content-md-center">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="site" class="color-blue">Site</label>
+                        
+                        	<input type="text" class="form-control form-diferente" id="site" aria-describedby="site" th:field="*{pessoaJuridica.site}" value="${status.value}"/>
+                        	<span th:if="${ #fields.hasErrors('pessoaJuridica.site') }" th:errors="*{pessoaJuridica.site}"></span>
+                        	        
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="cnpj" class="color-blue">CNPJ</label>
+                        <label class="color-red">*</label>
+                        
+                        	<input type="text" class="form-control form-diferente" id="cnpj" aria-describedby="cnpj" th:field="*{pessoaJuridica.cnpj}" value="${status.value}">
+                       		<span th:if="${ #fields.hasErrors('pessoaJuridica.cnpj') }" th:errors="*{pessoaJuridica.cnpj}"></span>
+                       	
+                    </div>
+                </div>  
+            </div>
+            
+            <h2 style="
+			    font-size: 20px;
+			    text-align: center;
+			    margin-top: 20px;
+			    margin-bottom: 20px;
+			">Dados do responsável:</h2>
+
+            <div class="form-row justify-content-md-center">
+				                <div class="col-md-3">
+				                    <div class="form-group">
+				                        <label for="nome" class="color-blue">Nome</label>
+				                        <label class="color-red">*</label>
+										
+				                        	<input type="text"  class="form-control form-diferente" id="nome" aria-describedby="nome" th:field="*{usuario.nome}" value="${status.value}"/>
+											<span th:if="${#fields.hasErrors('usuario.nome')}" th:errors="*{usuario.nome}"></span>	
+												
+				                    </div>
+				                </div>
+
+				                <div class="col-md-4">
+				                    <div class="form-group">
+				                        <label for="sobrenome" class="color-blue">Sobrenome</label>
+				                        <label class="color-red">*</label>
+										
+				                        	<input type="text" class="form-control form-diferente" id="sobrenome" aria-describedby="sobrenome" th:field="*{usuario.sobrenome}" value="${status.value}"/>
+											<span th:if="${#fields.hasErrors('usuario.sobrenome')}" th:errors="*{usuario.sobrenome}"></span>
+
+				                    </div>
+				                </div>  
+				            </div>
+
+				            <div class="form-row justify-content-md-center">
+				                <div class="col-md-3">
+				                    <div class="form-group">
+				                        <label for="cpf" class="color-blue">CPF</label>
+				                        <label class="color-red">*</label>
+
+			                     		<input type="text" class="form-control form-diferente" id="cpf" aria-describedby="cpf" onKeyPress="mascara(this, formatarCpf)" th:field="*{usuario.cpf}" value="${status.value}"/>
+										<span th:if="${#fields.hasErrors('usuario.cpf')}" th:errors="*{usuario.cpf}"></span>
+
+				                    </div>
+				                </div>
+
+				                <div class="col-md-2">
+				                    <div class="form-group">
+				                        <label for="sexo" class="color-blue">Sexo</label>
+				                        <label class="color-red">*</label>
+
+					                        <select class="form-control form-diferente" id="sexo" th:field="*{usuario.sexo}">
+					                            <option value="Feminino">Feminino</option>
+					                            <option value="Masculino">Masculino</option>
+					                            <option value="Prefiro não dizer">Prefiro não dizer</option>
+					                        </select>  
+											
+				                    </div>
+				                </div>
+
+				                <div class="col-md-2">
+				                    <div class="form-group">
+				                        <label for="telefone" class="color-blue">Telefone</label>
+				                        <label class="color-red">*</label>
+
+				                        	<input type="text" class="form-control form-diferente" id="telefone" aria-describedby="telefone" onKeyPress="mascaraTelefone(this, formatarTelefone)" th:field="*{telefone.numero}" value="${status.value}"/>
+				                        	<span th:if="${ #fields.hasErrors('telefone.numero') }" th:errors="*{telefone.numero}"></span>
+
+				                    </div>   
+				                </div>                    
+				            </div>
+
+				                <div class="form-row justify-content-md-center">
+				                    <div class="col-md-3">
+				                        <div class="form-group">
+				                            <label for="pais" class="color-blue">País</label>
+				                            <label class="color-red">*</label>
+
+					                            <select class="form-control form-diferente" id="pais" th:field="*{endereco.pais}" >
+					                                <option value="Brasil" selected="selected">Brasil</option>
+					                            </select>   
+												
+				                        </div>
+				                   </div>
+
+				                   <div class="col-md-4">
+				                        <div class="form-group">
+				                            <label for="sexo" class="color-blue">Estado</label>
+				                            <label class="color-red">*</label>
+
+					                            <select class="form-control form-diferente" id="sexo" th:field="*{endereco.estado}">
+					                                <option value="AC">Acre</option>
+					                                <option value="AL">Alagoas</option>
+					                                <option value="AP">Amapá</option>
+					                                <option value="AM">Amazonas</option>
+					                                <option value="BA">Bahia</option>
+					                                <option value="CE">Ceará</option>
+					                                <option value="DF">Distrito Federal</option>
+					                                <option value="ES">Espírito Santo</option>
+					                                <option value="GO">Goiás</option>
+					                                <option value="MA">Maranhão</option>
+					                                <option value="MT">Mato Grosso</option>
+					                                <option value="MS">Mato Grosso do Sul</option>
+					                                <option value="MG">Minas Gerais</option>
+					                                <option value="PA">Pará</option>
+					                                <option value="PB">Paraíba</option>
+					                                <option value="PR">Paraná</option>
+					                                <option value="PE">Pernambuco</option>
+					                                <option value="PI">Piauí</option>
+					                                <option value="RJ">Rio de Janeiro</option>
+					                                <option value="RN">Rio Grande do Norte</option>
+					                                <option value="RS">Rio Grande do Sul</option>
+					                                <option value="RO">Rondônia</option>
+					                                <option value="RR">Roraima</option>
+					                                <option value="SC">Santa Catarina</option>
+					                                <option value="SP">São Paulo</option>
+					                                <option value="SE">Sergipe</option>
+					                                <option value="TO">Tocantins</option>
+					                            </select>   
+
+				                        </div>
+				                   </div>                  
+				                </div>
+
+				                <div class="form-row justify-content-md-center">
+				                    <div class="col-md-7">
+				                        <div class="form-group">
+				                            <label for="cidade" class="color-blue">Cidade</label>
+				                            <label class="color-red">*</label>
+				                            
+				                            	<input type="text" class="form-control form-diferente" id="cidade" aria-describedby="cidade" th:field="*{endereco.cidade}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('endereco.cidade') }" th:errors="*{endereco.cidade}"></span>
+				                            					                                
+				                        </div>
+				                    </div>   
+				                </div>
+
+				                <div class="form-row justify-content-md-center">
+				                    <div class="col-md-3">
+				                        <div class="form-group">
+				                            <label for="cidade" class="color-blue">CEP</label>
+				                            <label class="color-red">*</label>
+				                            
+				                            	<input type="text" class="form-control form-diferente" id="cep" aria-describedby="CEP" onKeyPress="mascaraCEP(this, formatarCEP)" th:field="*{endereco.cep}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('endereco.cep') }" th:errors="*{endereco.cep}"></span>		
+				                            				                                
+				                        </div>
+				                    </div> 
+
+				                    <div class="col-md-4">
+				                        <div class="form-group">
+				                            <label for="cidade" class="color-blue">Bairro</label>
+				                            <label class="color-red">*</label>
+
+				                            	<input type="text" class="form-control form-diferente" id="bairro" aria-describedby="bairro" th:field="*{endereco.bairro}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('endereco.bairro') }" th:errors="*{endereco.bairro}"></span>
+				                            	
+				                        </div>
+				                    </div>   
+				                </div>
+
+				                <div class="form-row justify-content-md-center">
+				                    <div class="col-md-3">
+				                        <div class="form-group">
+				                            <label for="logradouro" class="color-blue">Endereço</label>
+				                            <label class="color-red">*</label>
+
+				                            	<input type="text" class="form-control form-diferente" id="logradouro" aria-describedby="logradouro" th:field="*{endereco.logradouro}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('endereco.logradouro') }" th:errors="*{endereco.logradouro}"></span>
+				                            	
+				                        </div>
+				                    </div>          
+
+				                    <div class="col-md-2">
+				                        <div class="form-group">
+				                            <label for="complemento" class="color-blue">Complemento</label>
+				                            
+				                            	<input type="text" class="form-control form-diferente" id="complemento" aria-describedby="complemento" th:field="*{endereco.complemento}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('endereco.complemento') }" th:errors="*{endereco.complemento}"></span>
+				                            	
+				                        </div>
+				                    </div> 
+
+				                    <div class="col-md-2">
+				                        <div class="form-group">
+				                            <label for="numero" class="color-blue">Número</label>
+				                            <label class="color-red">*</label>
+				                            
+				                            	<input type="text" class="form-control form-diferente" id="numero" aria-describedby="numero" th:field="*{endereco.numeroLocal}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('endereco.numeroLocal') }" th:errors="*{endereco.numeroLocal}"></span>
+				                            	
+				                        </div>
+				                    </div> 
+				                </div>
+
+				                <div class="form-row justify-content-md-center">
+				                    <div class="col-md-4">
+				                        <div class="form-group">
+				                            <label for="email" class="color-blue">Email</label>
+				                            <label class="color-red">*</label>
+
+				                            	<input type="email" class="form-control form-diferente" id="email" aria-describedby="email" th:field="*{usuario.email}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('usuario.email') }" th:errors="*{usuario.email}"></span>
+				                            	 
+				                        </div>
+				                    </div>
+
+				                    <div class="col-md-3">
+				                        <div class="form-group">
+				                            <label for="email" class="color-blue">Confirme seu email</label>
+				                            <label class="color-red">*</label>
+				                            
+				                            <input type="email" class="form-control form-diferente" id="email" aria-describedby="email" name="confirmaEmail"/>
+				                            	
+				                        </div>
+				                    </div>                     
+				                </div>
+
+				                <div class="form-row justify-content-md-center">
+				                    <div class="col-md-4">
+				                        <div class="form-group">
+				                            <label for="senha" class="color-blue">Senha</label>
+				                            <label class="color-red">*</label>
+
+				                            	<input type="password" class="form-control form-diferente" id="senha" aria-describedby="senha" th:field="*{usuario.senha}" value="${status.value}"/>
+				                            	<span th:if="${ #fields.hasErrors('usuario.senha') }" th:errors="*{usuario.senha}"></span>
+				                            	
+				                        </div>
+				                    </div>    
+
+				                    <div class="col-md-3">
+				                        <div class="form-group">
+				                            <label for="senha" class="color-blue">Confirme sua senha</label>
+				                            <label class="color-red">*</label>
+				                            
+				                            <input type="password" class="form-control form-diferente" id="senha" aria-describedby="senha" name="confirmaSenha"/>
+				                        	
+				                        </div>   
+				                    </div>                     
+				                </div>
+
+				                <br/>
+				
+				
+					<center>
+				                
+	                	<button type="submit" class="btn">Salvar</button>
+	                
+	                </center>
+				
+           
+        </form>
+        
+       </div>
+       
+       <!-- Verifica qual tipo de pessoa e exibe o forul�rio conforme a pessoa -->
+		
+		<script type="text/javascript">
+
+		window.addEventListener('load', function(){
+
+	   		document.getElementById('PessoaF').style.display = 'inline';
+			document.getElementById('PessoaJ').style.display = 'none';
+
+			var PessoaFisica = document.getElementById('PF');
+			var PessoaJuridica = document.getElementById('PJ');
+			
+			PessoaFisica.onclick = function(){
+			
+			    document.getElementById('PessoaF').style.display = 'inline';
+			 	document.getElementById('PessoaJ').style.display = 'none';
+				
+			};
+			
+			PessoaJuridica.onclick = function(){
+	
+				document.getElementById('PessoaF').style.display = 'none';
+			 	document.getElementById('PessoaJ').style.display = 'inline'; 
+			
+			};
+			
+			
+	
+		});
+			
+		</script>
+		
+</body>
+
+</html>

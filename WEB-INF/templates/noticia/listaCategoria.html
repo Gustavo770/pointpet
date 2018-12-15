@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>listaaaa</title>
+</head>
+<body>
+<div class="col flex-1">
+					<h2>Categorias Cadastradas</h2>
+					<!-- Lista de notícias -->
+					<table id="categoriaNoticia" class="table container read-container ma-t-l">
+						<thead>
+							<tr>
+								<th>Categorias</th>
+							</tr>
+						</thead>
+						<tbody>
+
+									<tr th:each="categoriaNoticia : ${categoriasNoticia}">
+										<td th:text="${categoriaNoticia.nome}">
+											
+										</td>
+										
+										<td >
+											<a th:href="@{categoria/alterar(id=${categoriaNoticia.id})}">AlTERAR</a>
+
+										</td>
+										
+										<td >
+											<a th:href="@{categoria/deletar(id=${categoriaNoticia.id})}">DELETAR</a>
+										</td>
+									</tr>
+
+						</tbody>
+					</table>
+				</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<style>
+.button{
+border:none;
+background-color:none;
+color:none;
+border-radius:50px;
+}
+</style>
+
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MidiaKit</title>
+	<link rel="icon" th:href="@{/assets/img/icon.ico}" />
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/estilos-midiakit.css}">
+    <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/css/navbar.css}"/>
+  	
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-expand-lg navbar-light" th:replace="fragments/Navbar :: navbar">
+  
+</nav>
+
+<br>
+    <div class="titulo" style="margin-top: 75px;">
+        <h1>Mídia Kits</h1>
+    </div>
+
+
+<div id="generic_price_table">   
+<section>
+        <div class="container">
+            
+            <!--BLOCK ROW START-->
+            <div class="row">
+            <div th:each="midiakit : ${midiakits}" class="col-md-3">
+            <form th:action="@{/app/compra/salvar(id=${midiakit.id})}" method="post">
+                
+                
+                    <!--PRICE CONTENT START-->
+                    <div class="generic_content clearfix">
+                        
+                        <!--HEAD PRICE DETAIL START-->
+                        <div class="generic_head_price clearfix">
+                        
+                            <!--HEAD CONTENT START-->
+                            <div class="generic_head_content clearfix">
+                            
+                                <!--HEAD START-->
+                                <div class="head_bg"></div>
+                                <div class="head">
+                                    <span class="currency" th:text="${midiakit.tempo.tempoEmDias}"></span>
+                                    <span class="cent">DIAS</span>
+                                </div>
+                                <!--//HEAD END-->
+                                
+                            </div>
+                            <!--//HEAD CONTENT END-->
+                            
+                            <!--PRICE START-->
+                            <div class="generic_price_tag clearfix">    
+                                <span class="price">
+                                    <span class="sign">R$</span>
+                                    <span class="currency">10</span>
+                                    <span class="cent">.00</span>
+                                    <span class="month">/Mês</span>
+                                </span>
+                            </div>
+                            <!--//PRICE END-->
+                            
+                        </div>                            
+                        <!--//HEAD PRICE DETAIL END-->
+                        
+                        <!--FEATURE LIST START-->
+                        <div class="generic_feature_list">
+                            <ul>
+                                <li><span>Anuncios</span> rodando por</li>
+                                <li><span th:text="${midiakit.tempo.tempoEmDias}"></span> dias!</li>
+                               
+                            </ul>
+                        </div>
+                        <!--//FEATURE LIST END-->
+                        
+                        <!--BUTTON START-->
+                        <div class="generic_price_btn_orange clearfix"> 
+                        
+                        	<button class="button"><a style="cursor: pointer;">Comprar</a></button>
+                        
+                        </div>
+                        
+                        <!--//BUTTON END-->
+                        
+                    </div>
+                    <!--//PRICE CONTENT END-->
+                        
+                
+                </form>
+                </div>
+                
+             </div>
+          </div>
+                
+                
+    </section>             
+</div>
+</body>
+</html>

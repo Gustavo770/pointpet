@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Anúncio</title>
+<link rel="icon"
+	href="http://images-cdn.impresa.pt/exameinformatica/2016-07-04-blog-140704-industry-4-0-336x336.png/original/mw-320">
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+
+<link rel="stylesheet" th:href="@{/assets/css/basic.css}">
+<link rel="stylesheet" th:href="@{/assets/css/dropzone.css}">
+<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/js.js}"></script>
+<script th:src="@{/assets/js/dropzone.js}"></script>
+<script th:src="@{/assets/js/dropzone-amd-module.js}"></script>
+<link rel="stylesheet" th:href="@{/assets/css/estilos.css}">
+</head>
+<body>
+
+	<br>
+
+	<div class="titulo">
+		<h1>Cadastro de Anúncio</h1>
+	</div>
+
+	<br>
+	<br>
+	<div class="container">
+	
+		<form th:action="@{/app/adm/anuncio/salvar}" method="post"
+			th:object="${anuncio}" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}"/>
+			<div class="form-row justify-content-md-center">
+				<div class="col-md-7">
+				
+				<div class="form-group">
+						<label for="imgNoticia" class="color-blue">Imagem principal
+						do anúncio</label> <label class="color-red">*</label>
+	<input type="file"
+	       class="dropzone color-blue" 
+	       id="caminhoFotoAnuncio" 
+	       name="caminhoFotoAnuncio" 
+	       style="max-width: 700px;"  
+	       aria-describedby="Imagem" />
+					</div>
+					
+				
+				
+					<div class="form-group">
+						<label for="cnpj" class="color-blue">CNPJ</label> <label
+							class="color-red">*</label> 
+	<input type="text" class="form-control form-diferente" th:field="*{pessoaJuridica.cnpj}" id="cnpj" aria-describedby="cnpj" />
+					</div>
+					
+								<div class="form-row justify-content-md-center">
+  
+     <div class="form-group" style="height: 102px; width: 200px;">
+            <label for="localPagina" class="color-blue">Local Pagina</label>
+                       <label class="color-red">*</label>
+					<select class="form-control form-diferente" id="localPagina" th:field="*{localPagina.id}">
+						<option th:each="loc : ${localPagina}" th:value="${loc.id}"
+							th:text="${loc.nome}"></option>
+
+					</select>
+                  </div>
+				
+			</div>
+			
+			 <div class="form-group" style="height: 102px; width: 200px;">
+            <label for="tempo" class="color-blue">Tempo no ar:</label>
+                       <label class="color-red">*</label>
+					<select class="form-control form-diferente" id="tempo" th:field="*{tempo.id}">
+						<option th:each="tem : ${tempo}" th:value="${tem.id}"
+							th:text="${tem.tempoEmDias}"></option>
+
+					</select>
+                  </div>
+				
+			</div>
+					
+				</div>
+
+
+
+		<header>
+				<button class="btn">Salvar</button>
+			</header>
+		</form>
+			
+			</div>
+					
+			
+		
+	
+
+</body>
+
+</html>

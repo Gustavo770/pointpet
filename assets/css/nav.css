@@ -1,0 +1,127 @@
+* {
+    font-family: 'phinster';
+}
+
+.navbar-toggler{
+    color: #36939b;
+    background-color: #36939b;
+}
+
+button{
+    color: #36939b;
+    background-color: #36939b;
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: #36939b;
+    background-color:#f18719;
+    margin-left: 30px;  
+    text-decoration:none;  
+}
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(54,147,155, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  text-decoration:none;
+}
+
+@font-face{
+    font-family: phinster;
+    src: url(fonts/PhinsterRegular.woff);
+}
+
+nav{
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;  
+    font-size: 16px;  
+}
+
+#centro{
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;  
+    font-size: 16px;
+}
+
+.navbar, .navbar-nav{
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;  
+    font-size: 16px;  
+}
+
+    
+
+.logo{
+    width: 47px;
+	height: 58px;
+	margin-left: 30px;
+	padding-bottom: 8px;
+	padding-top: -4px;
+    z-index: 3;
+    display: flex;
+    justify-content: left;
+}
+
+nav img{
+    width:32px;
+    height: 35px;
+}
+
+#esquerda{
+    z-index: 3;
+    display: flex;
+    justify-content: left;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+    width: fit-content;
+}
+    
+li{
+    float: left;
+    width: auto;
+    background-color: #ffffff;    
+}
+    
+li a {
+    display: block;
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 16px;
+    padding-left: 16px;
+    text-decoration: none;
+}
+    
+li a:hover {
+    color: #f18719;
+    text-decoration:none; 
+}
+
+a:hover.laranja{
+    color: #36939b;
+}
+
+button:hover{
+    color: black;
+}
+  
+button.azul{
+    border-color: transparent;
+    background: #36939b;
+    border-radius: 12px;
+}
+
+button.laranja{
+    border-color: transparent;
+    background: #f18719;
+    border-radius: 12px;
+}

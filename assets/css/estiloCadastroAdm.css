@@ -1,0 +1,115 @@
+*{
+  font-family: phinster;
+}
+
+h1 {
+  font-family: phinster;
+	color: #1f858e;
+	border-bottom: 2px solid #ffba71;
+	line-height: 1;
+	display: inline-block;
+}
+
+.color-blue{
+  color: #0d6b74;
+}
+
+.color-red{
+  color: #ff0000;
+}
+
+.form-diferente{
+  color: #0d6b74;
+  border:1px solid #fca448;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-diferente:focus{
+  border-color: #fca448;
+  box-shadow: 2.5px 2px #fca448;
+  color: #0d6b74;
+
+}
+
+.titulo {
+  text-align: center;
+}
+
+.centro{
+  text-align: center;
+}
+
+@font-face{
+  font-family: phinster;
+  src: url(../fonts/PhinsterRegular.woff);
+}
+
+header a{
+  text-decoration: none;
+  color:#0d6b74;
+  display: inline-block;
+  padding: 15px 20px;
+  margin: 10px 30px;
+  border:1px solid #000000;
+  border-radius: 5px;
+  margin-left: 45%;
+
+
+}
+ header a:hover{
+  background-color: #5AB1B9;
+  color: #FFFFFF ;
+  box-shadow: 0 2px 3px #777;
+
+ }
+
+ @keyframes btn {
+  0%{
+    transform:rotate(0);
+  }
+  25%{
+    transform:rotate(10deg); 
+
+  }
+  50%{
+    transform:rotate(0);
+
+  }
+  75%{
+    transform:rotate(-10deg);
+  }
+
+ }
+ .btn{
+  transition: .5s;
+  border:1px solid #36939b;
+  background-color: #36939b;
+ }
+
+ .btn:hover{
+  animation-name: btn;
+  animation-delay: .5s;
+  animation-duration: 1s;
+  animation-timing-function: liner;
+  animation-iteration-count: 1;
+   background-color: #36939b;
+ }
+
+.hide {
+  display: none;
+}
+
+
+.form-diferente-readonly{
+  color: #0d6b74;
+  border:1px solid #a7adaf;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-diferente-readonly:focus{
+  border-color: #a7adaf;
+  box-shadow: 2.5px 2px #a7adaf;
+  color: #0d6b74;
+}

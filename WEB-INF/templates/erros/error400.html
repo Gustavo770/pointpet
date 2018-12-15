@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+    	<meta charset="UTF-8">
+        <title>Erro 400</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/White_X_in_red_background.svg/450px-White_X_in_red_background.svg.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/estilos-erro.css}"/>
+    </head>
+    <body style="background-color: #f5a85c "> 
+
+        <div class="settings">
+               <img th:src="@{/assets/img/paginas_erro/settings.png}" alt="Ícone indicando sistema em manutenção"/>
+        </div>  
+
+        <div class="erro">
+            <img th:src="@{/assets/img/paginas_erro/400.png}" alt="Imagem de erro no servidor"/>
+        </div>
+
+        <div class="computador">
+            <img th:src="@{/assets/img/paginas_erro/computador400.png}" alt="Imagem de computador"/>
+        </div>
+
+        <div id="titulo">
+            <h1>Bad request.</h1>
+        </div>
+
+    </body>
+</html>

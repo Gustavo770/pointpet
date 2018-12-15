@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title>Erro 505</title>
+        <meta charset="UTF-8">
+        <link rel="icon" th:href="@{/assets/img/logoErro.png}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" th:href="@{/assets/css/estilos-erro.css}">
+    </head>
+    <body style="background-color: #f5a85c "> 
+
+         <div class="logo bounce" style="">
+               <img src="@{/assets/img/Ativo6.png}" alt="Banner de aniversário"/>
+        </div>
+        
+
+        <div class="catBigH catBigW">
+            <img th:src="@{/assets/img/cat1.png}" class="responsiveCat" style="position: absolute; left: 0%; bottom: 0%;"/>
+        </div>
+
+        <div class="catBigH catBigW" style="position: absolute; max-width: 600px;top: 30%;right: 20%">
+            <h1>Versão HTTP não suportada</h1>
+            <header style="margin-top: 10px;position: absolute;right: 40%;">
+                <a th:href="@{/}">
+                	
+                	<button th:href="@{/}" class="btn"> Home </button>
+                
+                </a>
+            </header>
+        </div>
+
+        <div class="minW" style="margin-top: 70px;right: 50%;">
+             <h1>Versão HTTP não suportada</h1>
+            <header style="margin-top: 10px;position: absolute;right: 45%;">
+                <a th:href="@{/}">
+                	
+                	<button th:href="@{/}" class="btn"> Home </button>
+                
+                </a>
+            </header>
+        </div>
+
+
+    </body>
+</html>

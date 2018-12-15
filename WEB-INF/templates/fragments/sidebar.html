@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PointPet</title>
+</head>
+<body>
+
+	<div class="sidebar" data-color="white" data-background-color="black" th:data-image="@{/assets/img/sidebar-2.jpg}" th:fragment="sidebar(pageActive)">
+        <div class="logo">
+            <div class="simple-text logo-normal" sec:authorize="isAuthenticated()">
+            
+            <th:block th:switch="${#request.userPrincipal.principal.permissao.nome}">
+            
+            	<span th:case="ADMINISTRADOR">Administrador</span>
+            	
+            	<span th:case="JORNALISTA">Jornalista</span>
+            	
+            	<span th:case="MASTER">Master</span>
+            
+            </th:block>
+            </div>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+
+                <li class="nav-item " th:classappend="${pageActive} == 'inicio' ? 'active' : ''">
+                    <a class="nav-link" th:href="${#request.userPrincipal.principal.permissao.nome == 'MASTER' or #request.userPrincipal.principal.permissao.nome == 'ADMINISTRADOR'} ? @{/app/adm} : @{/app/jornalista}">
+                        <i class="material-icons">dashboard</i>
+                        <p>Inicio</p>
+                    </a>
+                </li>
+                <li class="nav-item " th:classappend="${pageActive} == 'perfil' ? 'active' : ''">
+                    <a class="nav-link " th:href="${#request.userPrincipal.principal.permissao.nome == 'MASTER' or #request.userPrincipal.principal.permissao.nome == 'ADMINISTRADOR'} ? @{/app/adm/perfil} : @{/app/jornalista/perfil}">
+                        <i class="material-icons">person</i>
+                        <p>Perfil de Usuário</p>
+                    </a>
+                </li>
+                <li class="nav-item " sec:authorize="${principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'config' ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/app/adm/config}">
+                        <i class="material-icons">build</i>
+                        <p>Configurações Gerais</p>
+                    </a>
+                </li>
+                <li class="nav-item " sec:authorize="${principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'grafico' ? 'active' : ''">
+                    <a class="nav-link " th:href="@{/app/adm/grafico}" >
+                        <i class="material-icons">assessment</i>
+                        <p>Gráficos</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item " sec:authorize="${principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'categorias' ? 'active' : ''">
+                    <a class="nav-link " th:href="@{/app/adm/listaCategorias}">
+                        <i class="material-icons">list</i>
+                        <p>Lista de Categorias</p>
+                    </a>
+                </li>
+                <li class="nav-item " sec:authorize="${principal.permissao.nome == 'ADMINISTRADOR' or principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'anuncios' ? 'active' : ''">
+                    <a class="nav-link " th:href="@{/app/adm/listaAnuncios}">
+                        <i class="material-icons">list</i>
+                        <p>Lista de Anúncios</p>
+                    </a>
+                </li>
+                <li class="nav-item " sec:authorize="${principal.permissao.nome == 'ADMINISTRADOR' or principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'jornalistas' ? 'active' : ''">
+                    <a class="nav-link " th:href="@{/app/adm/listaJornalistas}">
+                        <i class="material-icons">list</i>
+                        <p>Lista de Jornalistas</p>
+                    </a>
+                </li>
+                <li class="nav-item " sec:authorize="${principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive == 'adms'}? 'active' : ''">
+                    <a class="nav-link " th:href="@{/app/adm/listaAdms}">
+                        <i class="material-icons">list</i>
+                        <p>Lista de Administradores</p>
+                    </a>
+                </li>
+                <li class="nav-item " sec:authorize="${principal.permissao.nome == 'ADMINISTRADOR' or principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'noticias-aprovacao' ? 'active' : ''">
+                    <a class="nav-link" th:href="@{/app/adm/noticia/listaNoticias}">
+                        <i class="material-icons">list</i>
+                        <p>Notícias para aprovação</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/app/jornalista/noticia/novo}" sec:authorize="${principal.permissao.nome == 'JORNALISTA'}" th:classappend="${pageActive} == 'noticia-cadastro' ? 'active' : ''">
+                        <i class="material-icons">list</i>
+                        <p>Cadastra Notícias</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/app/jornalista/listaNoticias}" sec:authorize="${principal.permissao.nome == 'JORNALISTA'}" th:classappend="${pageActive} == 'listaNoticias' ? 'active' : ''">
+                        <i class="material-icons">list</i>
+                        <p>Lista de Notícias</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/app/adm/revista/nova}" sec:authorize="${principal.permissao.nome == 'ADMINISTRADOR' or principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'index_revista' ? 'active' : ''">
+                        <i class="material-icons">book</i>
+                        <p>Cadastra Revista</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/app/adm/listaMidia}" sec:authorize="${principal.permissao.nome == 'ADMINISTRADOR' or principal.permissao.nome == 'MASTER'}" th:classappend="${pageActive} == 'listarMidia' ? 'active' : ''">
+                        <i class="material-icons">list</i>
+                        <p>Midias para aprovação</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/app/sair}">
+                        <i class="material-icons">exit_to_app</i>
+                        <p>Sair</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

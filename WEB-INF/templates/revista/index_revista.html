@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/assets/css/estilo-revista.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/navbar.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/assets/js/bootstrap.min.js}" />
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-expand-lg navbar-light" th:replace="fragments/Navbar :: navbar"></nav>
+
+  <div class="pt-5">
+    <div class="container">
+      <div class="row">
+        <div th:if="${ultimaRevista != null}" class="px-md-5 col-md-8">
+          <div class="tituloPrincipal">
+          <h1 class="mb-4 text-primary"> 
+            <b th:text="'Edição ' + ${ultimaRevista.edicao}">Nome da revista</b> 
+          </h1>
+          </div>
+          <div class="subTitulo">
+          <h3> 
+            <b>Descrição</b> 
+          </h3>
+          </div>
+          <p class="mb-3" th:text="${ultimaRevista.descricao}">I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies
+          I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies</p> 
+         
+          <header>
+      <a th:href="@{/app/revista/baixar(edicao = ${ultimaRevista.edicao})}">
+      	
+      	<button  class="btn"> Download </button>
+      
+      </a>
+      </header>
+        </div>
+        
+        
+        <div th:if="${ultimaRevista == null}" class="px-md-5 col-md-8">
+        	  <div class="tituloPrincipal">
+        	  <h1 class="mb-4 text-primary"> 
+       	 	   <b>Ainda não há revistas cadastradas :-(</b> 
+         	 </h1>
+         	 </div>
+        	  <div class="subTitulo">
+         	 <h3> 
+           	 <b>Mas terá :-)</b> 
+         	 </h3>
+          	</div>
+         
+          	<header>
+      		</header>
+        </div>
+        
+        <div class="col-md-4 sumir"> 
+          <div class="imgMoldura">
+          <img class="img-fluid d-block" th:src="@{/assets/img/revista/moldura.png}"> 
+        </div>
+        <div class="imgFundo">
+          <img th:src="@{/assets/img/revista/Tela_inicial.png}">
+        </div>
+</div>
+<div class="col-md-4 aparecer"> 
+   <div class="imgBorda">
+    <img class="img-fluid d-block" th:src="@{/assets/img/revista/borda.png}"> 
+  </div>
+   <div class="imgFundoRespo">
+          <img th:src="@{/assets/img/revista/Tela_inicial2.png}">
+        </div>
+   </div>
+      </div>
+    </div>
+  </div>
+  
+  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" style=""></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+	<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/slick.min.js}"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
+  
+</body>
+
+</html>

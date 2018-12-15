@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <title>PointPet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" th:href="@{assets/css/estilo-sobreNos.css}">
+    <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css">
+	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+
+	<!-- Slick -->
+	<link rel="stylesheet" th:href="@{/assets/css/slick.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/slick-theme.css}" />
+	
+	<!-- Ícone -->
+	<link rel="icon" th:href="@{/assets/img/icon.ico}" />
+	
+	<!-- Fontes -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+
+	<!-- NavBar -->
+	<link rel="stylesheet" th:href="@{/assets/css/navbar.css}">
+
+</head>
+
+<body class="text-light">
+
+	<!-- NavBar -->
+	<nav class="navbar navbar-default navbar-expand-lg navbar-light" th:replace="fragments/Navbar :: navbar"></nav>
+
+    <div class="py-5 text-center text-md-right" style="	background-attachment: fixed;	background-image: linear-gradient(to bottom, #f18719 , white);	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="p-5 mx-auto mx-md-0 ml-md-auto col-10 col-md-9">
+                    <h3 class="display-3" style="	border-color: #f18719;">PointPet</h3>
+                    <p class="mb-3 lead">Trata-se de um prestadora de serviço no ramo de comunicação digital, com a finalidade de aproximar empresas
+                        do segmento. O portal de comunicação e Business no setor Pet, marketing de relacionamento B2B: melhores
+                        práticas para conquistar clientes, fidelizar clientes e aproximar clientes.&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pointPetRespo">
+        <div class="py-5 text-center">
+            <div class="container">
+                <div style="color:black; padding:10%" class="row">
+                    <div class="col-md-4 mt-6 px-6 col-6">
+                        <div class="PointPetInfo">
+
+                            <img th:src="@{/assets/img/sobre/new.png}"> </img>
+                            <h5>
+                                <b>Missão</b>
+                            </h5>
+                            <p class="mb-3">Ser uma empresa de comunicação do mercado Pet, e que tem como objetivo um mundo melhor para os
+                                nossos PETs</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-6 px-6 col-6">
+                        <div class="PointPetInfo">
+                            <img th:src="@{/assets/img/sobre/pet.png}"> </img>
+                            <h5>
+                                <b>Valores e Principios</b>
+                            </h5>
+                            <p class="mb-3">
+
+                                <p> Temos como maiores valores e principios: inovação, ética, crença e a valorização dos pets</p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-6 px-6 col-6">
+                        <div class="PointPetInfo">
+                            <img th:src="@{/assets/img/sobre/good.png}"> </img>
+                            <h5>
+                                <b>Visão</b>
+                            </h5>
+                            <p class="mb-3">Ser referencia no mundo digital sobre Pet para proprietários e toda cadeia de valor do mundo
+                                Pet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="py-5" style="background-image: linear-gradient(#C1F7F3, rgb(18, 187, 175)) ; background-position: left top; background-size: 100%; background-repeat: repeat; background-attachment: fixed;">
+
+        <div style="width:40%; height:40%" class="container">
+            <div class="sair">
+                <img th:src="@{/assets/img/sobre/patas.png}" class="responsive" height="50%" style="position: fixed;  margin-bottom: 7%; right: 2%; bottom: 0%;"
+                />
+                <img th:src="@{/assets/img/sobre/patas.png}" class="responsive" height="50%" style="position: fixed; margin-bottom: 7%; left: 2%; bottom: 0%;"
+                />
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titulo">
+                        <h1>Conheça Nossa Historia</h1>
+                    </div>
+                    <div class="embed-responsive embed-responsive-4by3 my-0">
+                        <video controls autoplay muted th:src="@{/assets/video/sobre/movie.mp4}" class="embed-responsive-item"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 d-md-flex align-items-center">
+
+                    <ul class="nav mx-md-auto d-flex ">
+                    </ul>
+                    <div style="margin-right:50%" class="row">
+                        <div class="col-md-12 d-flex align-items-center justify-content-md-between justify-content-center my-2">
+                            <a href="#">
+                                <i class="d-block fa fa-facebook-official text-muted fa-lg mx-2"></i>
+                            </a>
+                            <a href="#">
+                                <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
+                            </a>
+                            <a href="#">
+                                <i class="d-block fa fa-linkedin text-muted fa-lg ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="color:black" class="copyright">
+                        Todos os direitos reservados © PointPet -
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" style=""></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+	<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
+    
+</body>
+
+</html>

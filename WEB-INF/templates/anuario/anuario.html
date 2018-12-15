@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css">
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+<link rel="stylesheet" th:href="@{/assets/css/slick-theme.css}">
+<link rel="icon" th:href="@{/assets/img/icon.ico}">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+<link media="all" rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/estilo.css}">
+
+<link rel="stylesheet" th:href="@{/assets/css/navbar.css}">
+
+    <title>
+        PointPet
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
+    <style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 300px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+.meu-main{
+	padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+
+</head>
+
+<body style="background-color:white">
+    <nav class="navbar navbar-default navbar-expand-lg navbar-light"
+		th:replace="fragments/Navbar :: navbar"></nav>
+    
+
+    <div class="main-panel meu-main" style="padding-top: 100px;">
+
+        <div class="titulo">
+            <h1>Anuário</h1>
+            <h2>Descubra fornecedores e distribuidores!</h2>
+        </div>
+
+        <br>
+        
+        <p th:if="${juridica.size() == 0}"> Não há empresas cadastradas ainda.</p>
+        <p th:if="${juridica.size() == 0}"> Ajude-nos a expandir: compartilhe!</p>
+
+		<div class="card" th:each="j : ${juridica}">
+		  <div class="container">
+		  
+		    <h4  ><b th:text="${j.nomeFantasia}"></b></h4> 
+		    <span>RazãoSocial:</span>
+		    <span th:text="${j.razaoSocial}" >Ensinar</span> 
+		    <p th:text="${j.site}" >Site</p>
+		  </div>
+		</div>
+		
+		<br>
+
+     </div>
+     
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" style=""></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
+     
+</body>
+
+</html>
